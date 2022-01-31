@@ -17,5 +17,5 @@ class config {
   
   //Ключи для REcapcha
   public static $public_key_RE = "6Ldq8EUeAAAAABlQSsRPmQoJ19SiDdNSFx7JiUCV";
-  public static $secret_key_RE = "6Ldq8EUeAAAAAIVMohD4cKt2UkMkPkuTY_rrbcUr";
+  public static $secret_key_RE = "";
 }
