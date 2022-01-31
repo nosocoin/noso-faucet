@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /index.php [L,QSA]
+
+#401 Авторизация не выполнена
+ErrorDocument 401 /index.php
+#404 Страница не найдена
+ErrorDocument 404 /index.php
