@@ -42,6 +42,10 @@ class core {
   $db->execute(array('keyClaimVer' => "", 'id' => $user_id));
  }
 
+ /**
+  * Валидация GET
+  */
+
   public static function __checkGET($arg) {
     if(isset($_GET[$arg]))
     return $_GET[$arg];
@@ -49,35 +53,25 @@ class core {
   }
 
 
-  public static function converTime($time){
-
-    if($time==3600){
-      $return = date('h:i', $time);
-    }elseif($time<=60){
-      $return = date('s second', $time);
-    }else{
-      $return = date('i ', $time);
-    }
-
-    return $return;
-
-  }
 
   
 
-
+/**
+ * Нужно переписать эту функцию она очень корява
+ * Использовал ее еще в 14 году
+*
+*
+*/
  public static function Sec2Time($time){
     if(is_numeric($time)){
-    $value = array("years" => 0, "days" => 0, "hours" => 0,
+    $value = array("days" => 0, "hours" => 0,
     "minutes" => 0, "seconds" => 0,);
     if($time >= 86400){
     $value["days"] = floor($time/86400);
-    $time = ($time%86400);
-    }
+    $time = ($time%86400); }
     if($time >= 3600){
     $value["hours"] = floor($time/3600);
-    $time = ($time%3600);
-    }
+    $time = ($time%3600);  }
     if($time >= 60){
     $value["minutes"] = floor($time/60);
     $time = ($time%60);
@@ -86,8 +80,7 @@ class core {
         if($value["seconds"]>0){
       $time5 = $value["seconds"].' sec. ';
       }else{
-      $time5='';
-      }
+      $time5=''; }
       if($value["minutes"]>0){
       $time4 = $value["minutes"].' min. ';
       }else{
@@ -107,8 +100,7 @@ class core {
     return 	$time2.$time3.$time4.$time5;
     return (array) $value;
     }else{
-    return (bool) FALSE;
-    }
+    return (bool) FALSE; }
     }
 }
 

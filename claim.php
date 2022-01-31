@@ -54,14 +54,12 @@ if(!userInfo::$user_ver_KEY==$_POST['TOKEN_HIDEEN']){
 echo layout::HeadLayout(config::$title);
 
 if(!empty($error)) echo $error;
-echo "<div class='box'>
-<h5 class='title is-5'>2. Solve Captcha</h5>
-<form action='$home/claim.php?check=pay' method='POST'>
+echo "<div class='box'><h5 class='title is-5'>2. Solve Captcha</h5>
+<form action='".config::$home."/claim.php?check=pay' method='POST'>
 <input type='hidden' name='TOKEN_HIDEEN' value=".core::genTokenClaim($user_id).">
-    <div class='g-recaptcha' data-sitekey='".config::$public_key_RE."'></div>
+<div class='g-recaptcha' data-sitekey='".config::$public_key_RE."'></div>
     <div class='control field is-grouped is-grouped-right has-background-white'>
-    <button type='submit' class='button is-warning'>Claim</button>
-    </div>
+    <button type='submit' class='button is-warning'>Claim</button></div>
     </form></div>";
 
 

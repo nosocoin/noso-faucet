@@ -1,8 +1,6 @@
 <? 
 define('pasichDev', 1);
 
-$root = "";
-$allow = false;
 require_once("sys/core.php");
 $start_time = core::startInfoGen();
 
@@ -11,17 +9,16 @@ $start_time = core::startInfoGen();
 echo layout::HeadLayout(config::$title);
 
 
-echo '<div class="columns"><div class="column is-half">';
-
-echo '<div class="notification is-warning is-light">
+echo '<div class="columns"><div class="column is-half">
+<div class="notification is-warning is-light">
 Minimum payout threshold <strong>'.config::$minNosoPAyments.' NOSO</strong></div>';
 
 if(config::$minNosoPAyments<=userInfo::$user_BALANCE){
-echo '<div class="message-header"><p>Выплата</p></div><div class="box">
+echo '<div class="message-header"><p>Pay</p></div><div class="box">
 <div class="control has-background-white">
-<h6 class="subtitle is-6 has-text-grey"> На вашем балансе 35 NOSO вы можете запросить выплату</h6>
-<form action="'.$home.'/claim.php" method="post">
-  <button class="button is-danger"><strong>Запросить выплату</strong></button></form>
+<h6 class="subtitle is-6 has-text-grey">On your balance of 35 NOSO you can request a payout</h6>
+<form action="'.config::$home.'/claim.php" method="post">
+  <button class="button is-danger"><strong>Request a payout</strong></button></form>
 </div></div>';
 }
 
@@ -39,7 +36,6 @@ echo '<div class="message-header"><p>Last 20 claims</p></div>
       <th>Number of coins</th>
    </tr>
 </thead>
-
 <tbody>
   '.payments::search_last_20_claim(userInfo::$user_WALLET).'
 </tbody>
@@ -53,25 +49,24 @@ echo '
 <table class = "table">
 <thead>
    <tr>
-      <th>Статус</th>
-      <th>Количество монет</th>
-      <th>Время</th>
+      <th>Status</th>
+      <th>Number of coins</th>
+      <th>Time</th>
    </tr>
 </thead>
-
 <tbody>
    <tr>
-      <td>Запрос</td>
+      <td>Inquiry</td>
       <td>50 NOSO</td>
       <td>12.01.22 18:34</td>
    </tr>
    <tr>
-      <td>Выплачено</td>
+      <td>Paid out</td>
       <td>50 NOSO</td>
       <td>12.01.22 18:34</td>
    </tr>
    <tr>
-      <td>Выплачено</td>
+      <td>Paid out</td>
       <td>50 NOSO</td>
       <td>12.01.22 18:34</td>
    </tr>
@@ -82,11 +77,9 @@ echo '
 
 
 echo layout::EndLayout($start_time);
-
  }else{header("Location: auth.php");}
+
  
-
-
 ?>
 
 

@@ -33,7 +33,7 @@ echo '<div class="box">
 <div class="control has-background-white">
 <h5 class="title is-5">1. Claim</h5>
 <h6 class="subtitle is-6 has-text-grey"> Rewards: <strong class="has-text-warning-dark">'.config::$NosoPay.' NOSO </strong> every  '.core::Sec2Time(config::$ClaimTime).'</h6>
-<form action="'.$home.'/claim.php" method="post">
+<form action="'.config::$home.'/claim.php" method="post">
       <input type="hidden" name="TOKEN_HIDEEN" value="'.core::genTokenClaim($user_id).'">
   <button class="button is-danger"><strong>NEXT</strong></button></form>
 </div></div>';
