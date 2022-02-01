@@ -1,6 +1,9 @@
 <?php
 
 
+/**
+ * Class conected to DataBase MySQL
+ */
 class DB{
 
 

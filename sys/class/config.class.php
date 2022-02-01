@@ -11,7 +11,6 @@ class config {
   public static $title = 'Faucet - Noso-Coin';
   public static $NosoPay = 0.1; // Количество монет которые выплачиваються за одну претензию
   public static $ClaimTime = 60 ; //Интервал между претензиями указывать в UNIX
-  public static $ClaimTimeConvert = 60 ; //Интервал между претензиями указывать минутах
   public static $minNosoPAyments = 100; //Минимальное количество NOSO для выплаты
   public static $percentRef = 0.5;  //Процент который получает рефферал
   
