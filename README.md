@@ -1,0 +1,2 @@
+Noso Coin - Faucet (Beta)
+===========
