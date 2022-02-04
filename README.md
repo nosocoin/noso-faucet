@@ -24,6 +24,6 @@ $ php -S localhost:8080 -t webroot
 This will start a web server on port 8080 and will server the contents of webroot
 
 ## Using MySql Database
-The database is in the db folder
+The database is in the /_db folder
 Load the database and write the data to config/.env
 
