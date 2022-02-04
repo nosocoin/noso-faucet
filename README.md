@@ -1,7 +1,9 @@
 # Faucet for Noso Coin
-![bulma version](https://img.shields.io/badge/bulma-0.9.0-4169e1.svg)
 
 Implementation of a faucet for the cryptocoin Noso.
+
+![bulma version](https://img.shields.io/badge/bulma-0.9.0-4169e1.svg)
+
 
 ## Setting the .env
 
