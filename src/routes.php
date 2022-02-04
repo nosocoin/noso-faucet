@@ -21,7 +21,8 @@ switch($_SERVER['REQUEST_URI']) {
         break;
 
     case '/auth':
-       auth::view();
+     $auth = new auth();
+     $auth -> view();
         break;
     
     case '/auth/login':
