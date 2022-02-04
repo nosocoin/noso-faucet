@@ -1,6 +1,9 @@
 .body{
-  padding: 20px;
   background: #EBEBEB;
+}
+
+.body_container {
+  padding: 20px;
 }
 
 .padding{

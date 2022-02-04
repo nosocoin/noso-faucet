@@ -1,6 +1,6 @@
 <?php
 
-namespace NosoProject;
+namespace NosoProject\Core;
 
 class Layout {
 
@@ -8,12 +8,12 @@ class Layout {
     
     }
 
-    public function headLayout($title) {
+    public function headLayout($title="") {
         echo '<!DOCTYPE html><html><head>'.PHP_EOL;
-        echo '<link rel="stylesheet" href="css/bulma.css">'.PHP_EOL;
-        echo '<link rel="stylesheet" href="style.css"> '.PHP_EOL;
-        echo '<script src="js.js" ></script>'.PHP_EOL;
-        echo '<link rel="icon" href="favicon.ico" type="image/x-icon"/>'.PHP_EOL;
+        echo '<link rel="stylesheet" href="'.$_ENV['APP_URL'].'css/bulma.css">'.PHP_EOL;
+        echo '<link rel="stylesheet" href="'.$_ENV['APP_URL'].'css/style.css"> '.PHP_EOL;
+        echo '<script src="'.$_ENV['APP_URL'].'js/js.js" ></script>'.PHP_EOL;
+        echo '<link rel="icon" href="'.$_ENV['APP_URL'].'img/favicon.png" type="image/x-icon"/>'.PHP_EOL;
         echo '<meta name="viewport" content="width=device-width, initial-scale=1">'.PHP_EOL;
         echo '<meta name="description" content="" />'.PHP_EOL;
         echo '<meta name="keywords" content="" />'.PHP_EOL;
@@ -25,23 +25,22 @@ class Layout {
     public function nav(){    
     echo '<nav class="navbar has-background-black" role="navigation" aria-label="main navigation">'.PHP_EOL;
     echo '<div class="container"><div class="navbar-brand">'.PHP_EOL;
-    echo '<div class="navbar-item"><img src="img/apple_icon.png" width="24" height="24"></div>
+    echo '<div class="navbar-item"><img src="'.$_ENV['APP_URL'].'img/N3256x256.png" width="24" height="24"></div>
     <a role="button" class="navbar-burger burger has-text-white-ter	" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span></a> </div>
       <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-    <a href="/" class="navbar-item has-text-grey">Faucet</a>
-    <a href="/payments" class="navbar-item  has-text-grey">Payments</a>
-    <a href="/faq" class="navbar-item  has-text-grey">F.A.Q</a>'.PHP_EOL;
+    <a href="'.$_ENV['APP_URL'].'" class="navbar-item has-text-grey">Faucet</a>
+    <a href="'.$_ENV['APP_URL'].'payments" class="navbar-item  has-text-grey">Payments</a>
+    <a href="'.$_ENV['APP_URL'].'faq" class="navbar-item  has-text-grey">F.A.Q</a>'.PHP_EOL;
     echo '</div></div></div></nav>'.PHP_EOL;
-
-    //echo '<div class="body"><div class="container">';
+    echo '<div class="body"><div class="container body_container ">'.PHP_EOL;
     }
 
     public function footer() {
-        echo '<footer class="footer"><div class="content has-text-centered"><p>
+        echo '</div><footer class="footer"><div class="content has-text-centered"><p>
         <strong class="has-text-warning-dark">Noso Faucet</strong>
         </br><small> </smal></p></div></footer>'.PHP_EOL;
         echo '</div></body></html>'.PHP_EOL;
