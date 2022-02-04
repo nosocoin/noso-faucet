@@ -1,0 +1,21 @@
+{
+    "name": "noso-project/faucet",
+    "description": "A faucet implementation for Noso Coin",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "license": "Unlicense",
+    "autoload": {
+        "psr-4": {
+            "NosoProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gustavo Carreno",
+            "email": "guscarreno@gmail.com"
+        }
+    ]
+}
