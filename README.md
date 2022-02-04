@@ -1,5 +1,7 @@
 # Faucet for Noso Coin
 
+ ![bulma version](https://img.shields.io/badge/bulma-0.9.0-4169e1.svg)
+
 Implementation of a faucet for the cryptocoin Noso.
 
 ## Setting the .env
@@ -21,6 +23,6 @@ $ php -S localhost:8080 -t webroot
 This will start a web server on port 8080 and will server the contents of webroot
 
 ## Using MySql Database
-The database is in the db folder
+The database is in the /_db folder
 Load the database and write the data to config/.env
 
