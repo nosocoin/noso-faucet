@@ -4,6 +4,9 @@
 
 Implementation of a faucet for the cryptocoin Noso.
 
+![bulma version](https://img.shields.io/badge/bulma-0.9.0-4169e1.svg)
+
+
 ## Setting the .env
 
 On the folder `config` pleas rename `.env.example` to `.env` and edit the values.
