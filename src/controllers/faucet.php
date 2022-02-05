@@ -1,21 +1,25 @@
 <?php
 
 namespace NosoProject\controllers;
+use NosoProject\core\userInfo;
 
 class faucet{
 
+    private $userInfo;
     protected $user_ID=0;
     protected $user_WALLET;
 
 
     public function __construct(){
 
+        $this->userInfo = new userInfo();
+      
     }
 
 
     public function checkAcces(){
 
-        if($this->user_ID==0)
+       if($this->userInfo->userId==0)
         $this->redicredAuth();
         else 
         $this->view();

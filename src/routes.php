@@ -1,6 +1,6 @@
 <?php
 
-use NosoProject\core\layout;
+use NosoProject\views\layout;
 use NosoProject\views\authView;
 use NosoProject\controllers\authController;
 use NosoProject\controllers\faucet;
@@ -12,18 +12,20 @@ $layout->headLayout();
 $layout->nav();
 
 switch($_SERVER['REQUEST_URI']) {
-    case '/':
+    case '/': //Home Page
     $faucet = new faucet();
     $faucet -> checkAcces();
         break;
 
-    case '/auth':
+    case '/auth': //Authorization page
         new authView();
         break;
 
-    case '/auth/login':
+    case '/auth/login': //Authorization backend
         new authController();                
         break;
+
+  
 
     case '/faq':
         break;

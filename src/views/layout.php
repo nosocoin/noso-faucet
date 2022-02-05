@@ -1,6 +1,6 @@
 <?php
 
-namespace NosoProject\Core;
+namespace NosoProject\views;
 
 class Layout {
 

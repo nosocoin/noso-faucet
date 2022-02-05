@@ -7,11 +7,15 @@ use NosoProject\core\coreFunctional;
 
 class authView {
 
+      private $error;
+      private $DB;
+      private $coreFunctional;
+
     public function __construct($err=false) {
       $this->error = $err; 
       $this->DB = DB::connectSQL();
       $this->coreFunctional = new coreFunctional();
-      $this->view();
+      $this->view(); 
     }
 
     /**
@@ -41,6 +45,9 @@ class authView {
       return $this->coreFunctional->formatNumber($inquiry->rowCount());
     }
 
+    /**
+     * The method that renders the page
+     */
     private function view(){
       echo '<div class="columns"><div class="column is-half">'.PHP_EOL;
       if($this->error)

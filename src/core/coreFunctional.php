@@ -11,8 +11,6 @@ class coreFunctional{
     public function __construct() {
     }
 
-
-
     /**
      * Method that rounds to thousands and millions
      * (this method will need to be extended at some point)
