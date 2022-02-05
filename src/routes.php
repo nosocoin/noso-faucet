@@ -12,6 +12,12 @@ $layout = new Layout();
 $layout->headLayout();
 $layout->nav();
 
+/**
+ * нужно реализовать переопделения 
+ * Когда пользователь не аторизован отправлять на авторизацию
+ * 
+ */
+
 switch($_SERVER['REQUEST_URI']) {
     case '/': //Home Page
     $faucet = new faucet();
