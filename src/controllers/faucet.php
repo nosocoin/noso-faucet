@@ -11,9 +11,8 @@ class faucet{
 
 
     public function __construct(){
-
         $this->userInfo = new userInfo();
-      
+    
     }
 
 
@@ -35,6 +34,7 @@ class faucet{
 
     protected function view(){
         echo "yes connected";
+        
     }
 
 

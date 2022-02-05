@@ -12,6 +12,7 @@ class authView {
       private $coreFunctional;
 
     public function __construct($err=false) {
+          
       $this->error = $err; 
       $this->DB = DB::connectSQL();
       $this->coreFunctional = new coreFunctional();
