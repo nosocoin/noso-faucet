@@ -1,7 +1,8 @@
 <?php
 
 use NosoProject\core\layout;
-use NosoProject\controllers\auth;
+use NosoProject\views\authView;
+use NosoProject\controllers\authController;
 use NosoProject\controllers\faucet;
 
 
@@ -15,23 +16,19 @@ switch($_SERVER['REQUEST_URI']) {
     $faucet = new faucet();
     $faucet -> checkAcces();
         break;
-    case '/faq':
-      
-
-        break;
 
     case '/auth':
-     $auth = new auth();
-     $auth -> view();
+        new authView();
         break;
-    
+
     case '/auth/login':
- 
-        auth::post();
-            
-    break;
+        new authController();                
+        break;
+
+    case '/faq':
+        break;
+
     case '/payments':
-           
         break;
     default:
         header("Location: /");
