@@ -2,6 +2,7 @@
 
 use NosoProject\views\layout;
 use NosoProject\views\authView;
+use NosoProject\views\faqView;
 use NosoProject\controllers\authController;
 use NosoProject\controllers\faucet;
 
@@ -28,6 +29,7 @@ switch($_SERVER['REQUEST_URI']) {
   
 
     case '/faq':
+        new faqView();
         break;
 
     case '/payments':

@@ -42,7 +42,7 @@ class Layout {
     public function footer() {
         echo '</div><footer class="footer"><div class="content has-text-centered"><p>
         <strong class="has-text-warning-dark">Noso Faucet</strong>
-        </br><small> </smal></p></div></footer>'.PHP_EOL;
+        </br><small>PasichDev</smal></p></div></footer>'.PHP_EOL;
         echo '</div></body></html>'.PHP_EOL;
     }
 
