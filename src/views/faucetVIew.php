@@ -34,7 +34,7 @@ echo '<div class="control has-background-white">
 echo '<div class="box">
 <div class="control has-background-white">
 <h5 class="title is-5">1. Claim</h5>
-<h6 class="subtitle is-6 has-text-grey"> Rewards: <strong class="has-text-warning-dark">333 NOSO </strong> every  234342342</h6>'.PHP_EOL;
+<h6 class="subtitle is-6 has-text-grey"> Rewards: <strong class="has-text-warning-dark">'.$_ENV['NOSO_PAY'].' NOSO </strong> every  234342342</h6>'.PHP_EOL;
 
 echo '<form action="/claim" method="post">
       <input type="hidden" name="TOKEN_HIDEEN" value="">

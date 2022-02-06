@@ -14,7 +14,11 @@
     },
     "authors": [
         {
-            "name": "Gustavo Carreno / Andrii Pasichnik",
+            "name": "Andrii Pasichnik",
+            "email": "pasichDev@outlook.com"
+        },
+        {
+            "name": "Gustavo Carreno",
             "email": "guscarreno@gmail.com"
         }
     ]
