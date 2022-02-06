@@ -26,6 +26,7 @@ class authController{
     private function routesAuth(){
         if($this->checkWallet()){
           $this->authStart();
+          header("Location: /");
         }else{
             new authView(true);
         }
