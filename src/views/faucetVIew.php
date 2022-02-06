@@ -2,16 +2,16 @@
 
 namespace NosoProject\views;
 use NosoProject\core\userInfo;
+use NosoProject\core\checkAcces;
 
-class faucet{
+class faucetView{
 
     private $userInfo;
     
 
     public function __construct(){
         $this->userInfo = new userInfo();
-    
-        $this->checkAcces();
+        new checkAcces($this->userInfo, $this->view()); //Обьект который проверяет доступность, нужно передать массив данных о пользователе и метод выю родителя
     }
 
 

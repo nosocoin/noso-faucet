@@ -2,21 +2,24 @@
 
 namespace NosoProject\views;
 use NosoProject\core\DB;
+use NosoProject\core\userInfo;
 use NosoProject\core\coreFunctional;
-
+use NosoProject\core\checkAcces;
 
 class authView {
 
       private $error;
       private $DB;
       private $coreFunctional;
+      private $userInfo;
 
     public function __construct($err=false) {
-          
       $this->error = $err; 
       $this->DB = DB::connectSQL();
       $this->coreFunctional = new coreFunctional();
-      $this->view(); 
+      $this->userInfo = new userInfo();
+
+      new checkAcces($this->userInfo, $this->view(),true); // Check Access to unauthorized
     }
 
     /**

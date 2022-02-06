@@ -3,7 +3,7 @@
 use NosoProject\views\layout;
 use NosoProject\views\authView;
 use NosoProject\views\faqView;
-use NosoProject\views\faucet;
+use NosoProject\views\faucetView;
 use NosoProject\controllers\authController;
 
 
@@ -21,7 +21,7 @@ $layout->nav();
 
 switch($_SERVER['REQUEST_URI']) {
     case '/': //Home Page
-      new faucet();
+      new faucetView();
         break;
 
     case '/auth': //Authorization page
