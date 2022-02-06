@@ -39,7 +39,7 @@ class claimView{
         echo '</form></div></div>'.PHP_EOL;
 
         echo '<div class="column">'.PHP_EOL;
-        echo '<div class="message-header"><p>ADDS BLOCK </p></div>'.PHP_EOL;
+        echo '<div class="message-header"><p>Test </p></div>'.PHP_EOL;
         echo '<div class="box"></div>'.PHP_EOL;
         echo '</div></div>'.PHP_EOL;
 
