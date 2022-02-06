@@ -9,15 +9,8 @@ use NosoProject\controllers\authController;
 
 use NosoProject\core\sys\titleGenerator;
 
-
-/**
- * Нужно еще написать метод который будет раздавить заголовки в зависимости от пути
- * 
- */
 $layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
 $layout->nav();
-
-
 
 switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
     case '/': //Home Page
