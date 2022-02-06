@@ -95,14 +95,11 @@ echo '</div></div>';
     <h6 class="subtitle is-6"><strong class=" has-text-danger-dark">'.$this->userInfo->userPaidOut.' NOSO</strong></h6>
     </div></div>'.PHP_EOL;
     echo '<div class="message-header"><p>Referrals Link</p></div>'.PHP_EOL;
-    /**
-     * Нужно прописать полный путь!
-     */
     echo '<div class="box"><h6 class="subtitle is-6">
     <div class="notification is-white is-light">You can invite friends and get 50% of every claim made by a friend</div></h6>
     <div class="field has-addons">
     <p class="control is-expanded has-background-white">
-    <input class="input" id="refLinks" type="text" value="/ref/'.$this->userInfo->userWallet.'"></p>
+    <input class="input" id="refLinks" type="text" value="'.$_SERVER['HTTP_REFERER'].'ref/'.$this->userInfo->userWallet.'"></p>
     <p class="control has-background-white">
     <button class="button is-black" onclick="copy()">Copy</button>
     </p></div>'.PHP_EOL;
