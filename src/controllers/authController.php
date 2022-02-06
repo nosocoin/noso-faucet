@@ -4,7 +4,7 @@ namespace NosoProject\controllers;
 use NosoProject\views\authView;
 use NosoProject\core\DB;
 
-//N2bXDNq8mogt75naxi6uamrjvWn7ZGe
+
 class authController{
     
     private $inputWallet;
