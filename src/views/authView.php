@@ -35,7 +35,7 @@ class authView {
      * Get the number of Paid of NOSO
      */
     private function getCountPaidNoso(){
-      $inquiry = $this->DB->prepare("SELECT sum(noso) FROM `claim` ");
+      $inquiry = $this->DB->prepare("SELECT sum(userPaidOut) FROM `users` ");
       $inquiry->execute();
       return $this->coreFunctional->formatNumber($inquiry->fetchColumn());
     }

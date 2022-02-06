@@ -58,9 +58,9 @@ class userInfo{
     $this->userLastclaim = $array['lastclaim'];
     $this->userRef = $array['ref'];
     $this->userReferals = $array['referrals'];
-    $this->$userRefBalance = $array['refBalance'];
-    $this->$userPaidOut = $array['paidOut'];
-    $this->$userVerKey = $array['keyClaimVer'];
+    $this->userRefBalance = $array['refBalance'];
+    $this->userPaidOut = $array['paidOut'];
+    $this->userVerKey = $array['keyClaimVer'];
 
   }else{ $this->cleanCookie();   }
 
