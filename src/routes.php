@@ -4,6 +4,7 @@ use NosoProject\views\layout;
 use NosoProject\views\authView;
 use NosoProject\views\faqView;
 use NosoProject\views\faucetView;
+use NosoProject\views\claimView;
 use NosoProject\controllers\authController;
 
 use NosoProject\core\sys\titleGenerator;
@@ -31,6 +32,9 @@ switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
         new authController();                
         break;
 
+    case '/claim':
+        new claimView();
+        break;
   
 
     case '/faq':

@@ -3,6 +3,7 @@
 namespace NosoProject\views;
 use NosoProject\core\userInfo;
 use NosoProject\core\checkAcces;
+use NosoProject\core\genVerificationCode;
 use NosoProject\core\sys\coreFunctional;
 
 class faucetView{
@@ -19,7 +20,6 @@ class faucetView{
     }
 
 
-   
 
     /**
      * Method that returns the number of payments for all time
@@ -28,9 +28,10 @@ class faucetView{
         return $this->userInfo->userBalance + $this->userInfo->userPaidOut;
     }
 
-
+     /**
+     * The method that renders the page
+     */
     private function view(){
-    
         echo '<div class="columns"><div class="column is-half">'.PHP_EOL;
         echo '<div class="box"><div class="control has-background-white">
               <h6 class="title is-6">Wallet:</h6>
@@ -80,10 +81,6 @@ class faucetView{
      */
     private function viewClaim(){
 
-        /**
-         * Нужно добавить генератор кода для проверки запроса 
-         **/
-
         if(($this->userInfo->userLastclaim + $_ENV['CLAIM_TIME'])<time()){
          
         echo '<div class="box">
@@ -92,14 +89,12 @@ class faucetView{
               <h6 class="subtitle is-6 has-text-grey"> Rewards: 
               <strong class="has-text-warning-dark">'.$_ENV['NOSO_PAY'].' NOSO </strong> every  '.$this->coreFunctional->setTime($_ENV['CLAIM_TIME']).'</h6>'.PHP_EOL;
         echo '<form action="/claim" method="post">
-              <input type="hidden" name="TOKEN_HIDEEN" value="">
+              <input type="hidden" name="TOKEN_HIDEEN" value="'.genVerificationCode::output($this->userInfo->userWallet).'">
               <button class="button is-danger"><strong>NEXT</strong></button></form>'.PHP_EOL;
         echo '</div></div>'; 
     }else {
-        $timeWait = userInfo::$user_LASTCLAIM + config::$ClaimTime - time();
-
-        echo '<div class="notification is-warning is-light">You have already claimed in the last '.core::Sec2Time(config::$ClaimTime).'</br>
-        You can claim again in '.core::Sec2Time($timeWait).'</div>';
+        echo '<div class="notification is-warning is-light">You have already claimed in the last '.$this->coreFunctional->setTime($_ENV['CLAIM_TIME']).'</br>
+              You can claim again in '.$this->coreFunctional->setTime(($this->userInfo->userLastclaim + $_ENV['CLAIM_TIME']) - time()).'</div>';
     }
 
     }

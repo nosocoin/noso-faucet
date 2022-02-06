@@ -1,7 +1,7 @@
 <?php
 
 namespace NosoProject\views;
-use NosoProject\core\DB;
+use NosoProject\core\sys\DB;
 use NosoProject\core\userInfo;
 use NosoProject\core\sys\coreFunctional;
 use NosoProject\core\checkAcces;
