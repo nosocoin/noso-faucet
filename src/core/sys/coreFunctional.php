@@ -1,6 +1,6 @@
 <?php 
 
-namespace NosoProject\core;
+namespace NosoProject\core\sys;
 
 
 /**

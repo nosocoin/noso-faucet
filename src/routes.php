@@ -6,22 +6,21 @@ use NosoProject\views\faqView;
 use NosoProject\views\faucetView;
 use NosoProject\controllers\authController;
 
+use NosoProject\core\sys\titleGenerator;
 
-
-
-$layout = new Layout();
-$layout->headLayout();
-$layout->nav();
 
 /**
- * нужно реализовать переопделения 
- * Когда пользователь не аторизован отправлять на авторизацию
+ * Нужно еще написать метод который будет раздавить заголовки в зависимости от пути
  * 
  */
+$layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
+$layout->nav();
 
-switch($_SERVER['REQUEST_URI']) {
+
+
+switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
     case '/': //Home Page
-      new faucetView();
+        new faucetView();
         break;
 
     case '/auth': //Authorization page

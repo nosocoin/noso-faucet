@@ -1,6 +1,6 @@
 <?php
 
-namespace NosoProject\Core;
+namespace NosoProject\Core\sys;
 
 class DB {
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace NosoProject\core;
-use NosoProject\core\DB;
+use NosoProject\core\sys\DB;
 
 class userInfo{
     

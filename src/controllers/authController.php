@@ -2,7 +2,7 @@
 
 namespace NosoProject\controllers;
 use NosoProject\views\authView;
-use NosoProject\core\DB;
+use NosoProject\core\sys\DB;
 
 
 class authController{

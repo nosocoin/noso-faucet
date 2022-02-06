@@ -4,11 +4,14 @@ namespace NosoProject\views;
 
 class Layout {
 
-    public function __construct() {
-    
+    private $title;
+
+    public function __construct($title) {
+        $this->title = $title; 
+        $this->headLayout();
     }
 
-    public function headLayout($title="") {
+    public function headLayout() {
         echo '<!DOCTYPE html><html><head>'.PHP_EOL;
         echo '<link rel="stylesheet" href="/css/bulma.css">'.PHP_EOL;
         echo '<link rel="stylesheet" href="/css/style.css"> '.PHP_EOL;
@@ -18,7 +21,7 @@ class Layout {
         echo '<meta name="description" content="" />'.PHP_EOL;
         echo '<meta name="keywords" content="" />'.PHP_EOL;
         echo '<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>'.PHP_EOL;
-        echo '<title>Noso Faucet'.(empty($title)?'':': '.$title).'</title>'.PHP_EOL;
+        echo '<title>Noso Faucet'.(empty($this->title)?'':': '.$this->title).'</title>'.PHP_EOL;
         echo '</head><body>'.PHP_EOL;
     }
 
