@@ -1,9 +1,11 @@
 <?php
 
+
+use NosoProject\controllers\authController;
+use NosoProject\controllers\refController;
 use NosoProject\views\authView;
 use NosoProject\views\faucetView;
 use NosoProject\views\claimView;
-use NosoProject\controllers\authController;
 use NosoProject\views\faqView;
 use NosoProject\views\layout;
 use NosoProject\views\notFoundView;
@@ -30,8 +32,9 @@ use NosoProject\core\sys\Routes;
 
   
 
-    $routes->add('/ref/[$]',function($lol) {
-            echo "hi->".$lol;
+    $routes->add('/ref/[$]',function($variable) {
+           $refController = new refController($variable);
+           $refController->run();
     });
 
     $routes->add('/claim', function() {

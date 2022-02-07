@@ -100,6 +100,7 @@ class authController{
     private function createCookie($id){
         setcookie("wallet", $this->inputWallet, time() + 2629743, "/");
         setcookie("id", md5($id), time() + 2629743, "/");
+        setcookie("refer",  null, time() - 20, "/");   
     }
 
  
