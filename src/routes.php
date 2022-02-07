@@ -8,10 +8,28 @@ use NosoProject\views\claimView;
 use NosoProject\controllers\authController;
 
 use NosoProject\core\sys\titleGenerator;
+use NosoProject\core\sys\Routes;
+
 
 $layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
 $layout->nav();
 
+
+
+echo "URl ->".$_SERVER['REQUEST_URI']."</br>";
+
+$routes = new Routes();
+
+$routes->add('/','view');
+$routes->add('/payments','view');
+$routes->add('/faq','view');
+
+$routes->add('/404','view');
+
+$routes->add('/ref/ada','view');
+$routes->run();
+
+/*
 switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
     case '/': //Home Page
         new faucetView();
@@ -39,7 +57,7 @@ switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
     default:
         header("Location: /");
         break;
-}
+}*/
 
 $layout->footer();
 
