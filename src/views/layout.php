@@ -5,6 +5,8 @@ namespace NosoProject\views;
 class Layout {
 
     private $title;
+    private $description = "Faucet for NOSO COIN. AirDrop coins.";
+    private $keywords = "Faucet, NOSOCOIN, AIDROP, NOSO-COIN, CRYPTO";
 
     public function __construct($title) {
         $this->title = $title; 
@@ -18,8 +20,8 @@ class Layout {
         echo '<script src="/js/js.js" ></script>'.PHP_EOL;
         echo '<link rel="icon" href="/img/favicon.png" type="image/x-icon"/>'.PHP_EOL;
         echo '<meta name="viewport" content="width=device-width, initial-scale=1">'.PHP_EOL;
-        echo '<meta name="description" content="" />'.PHP_EOL;
-        echo '<meta name="keywords" content="" />'.PHP_EOL;
+        echo '<meta name="description" content="'.$this->description.'" />'.PHP_EOL;
+        echo '<meta name="keywords" content="'.$this->keywords.'" />'.PHP_EOL;
         echo '<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>'.PHP_EOL;
         echo '<title>Noso Faucet'.(empty($this->title)?'':': '.$this->title).'</title>'.PHP_EOL;
         echo '</head><body>'.PHP_EOL;
