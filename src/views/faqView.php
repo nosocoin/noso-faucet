@@ -4,7 +4,7 @@ namespace NosoProject\views;
 
 class faqView {
 
-    public function __construct($err=false) {
+    public function __construct() {
      $this->view();
     }
 

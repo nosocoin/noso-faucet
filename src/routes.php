@@ -20,9 +20,9 @@ echo "URl ->".$_SERVER['REQUEST_URI']."</br>";
 
 $routes = new Routes();
 
-$routes->add('/','view');
+$routes->add('/', 'lol', true);
 $routes->add('/payments','view');
-$routes->add('/faq','view');
+$routes->add('/faq','viewe');
 
 $routes->add('/404','view');
 
