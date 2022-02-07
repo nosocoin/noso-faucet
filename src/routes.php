@@ -15,9 +15,9 @@ use NosoProject\core\sys\Routes;
     $layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
     $layout->nav();
 
+
+
     $routes = new Routes();
-
-
     $routes->add('/',  function() {
             new faucetView();
             }, true);
@@ -28,9 +28,11 @@ use NosoProject\core\sys\Routes;
             new faqView();
             });
 
-    $routes->add('/404', function() { notFoundView::view();  });
+  
 
-    $routes->add('/ref',function() {});
+    $routes->add('/ref/[$]',function($lol) {
+            echo "hi->".$lol;
+    });
 
     $routes->add('/claim', function() {
             new claimView(); 
@@ -44,8 +46,8 @@ use NosoProject\core\sys\Routes;
             new authView();
              });
 
+    $routes->add('/404', function() { notFoundView::view();  });
     $routes->run();
-
 
     $layout->footer();
 

@@ -6,16 +6,11 @@ namespace NosoProject\core\sys;
  * This is the class that implements project routing
  */
 
-
- /**
-  * Еще не реализовано отправку перемены в методы
-  * когда ее передали 
-  */
 class Routes{
     
     private $REQUEST_URI;
     private $Routes = Array();
-    public  $arq;
+    public  $Arg;
 
     public function __construct(){
         $this->REQUEST_URI = htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES);
@@ -43,49 +38,65 @@ class Routes{
     }
 
     /**
+     * call method
+     */
+    private function callMethod($method){
+      call_user_func($method, $this->Arg);
+    }
+
+    /**
      * Method that starts routing when there is an array
      */
     public function run(){
 
-        $countRoute = false;
-        $ParseUrl = parse_url($this->REQUEST_URI);
+                  $CountRoute = false;
+                  $ParseVariable = false;
+                  $ParseUrl = parse_url($this->REQUEST_URI);
 
         foreach ($this->Routes as $route) {
 
-                $ParseRoute = parse_url($route['rout']);
+                  $ParseRoute = parse_url($route['rout']);
 
-            //If this is not the main page, you need to cut off at the end /
-            if(!$route['home']){
-                $ParseUrl['path'] = rtrim($ParseUrl['path'], '/');
+            //Здесь нам нужно соврешить проверку ли указано вывод значения
+        if(stristr($ParseRoute['path'], '[$]') == true)    {
+                  $ParseRoute['path'] = rtrim($ParseRoute['path'], '/[$]');
+                  $ParseVariable = true;
             }
 
+            //If this is not the main page, you need to cut off at the end /
+        if(!$route['home']){
+                  $ParseUrl['path'] = rtrim($ParseUrl['path'], '/');
+            }
 
             /**
              * Let's check if there is a given route in this array
              * If the route is found then stop parsing the array
              * If there is no route, then we should send the user to /404
              */
-            if($ParseUrl['path'] == $ParseRoute['path'] ){
+        if($ParseUrl['path'] == $ParseRoute['path'] ){
 
                //If there is a value, then check it
-                if(isset($ParseUrl['query'])){
-                  $this->arq = htmlspecialchars($ParseUrl['query'], ENT_QUOTES);
+        if(isset($ParseUrl['query']) and $ParseVariable){
+                  $this->Arg = htmlspecialchars($ParseUrl['query'], ENT_QUOTES);
                 }
 
-                if(isset($route['function'])){
-                call_user_func($route['function']);
-                }
+            // Here we will make a method call
+        if(isset($route['function'])){ 
+                  $this->callMethod($route['function']);
+        }
             
-                $countRoute = true;
-            }
-
-            if($countRoute) {
-                break;
-              }
+                  $CountRoute = true;
         }
 
-        if(!$countRoute){
-               $this->RedicretTo404();
+        /**
+         * If we have found a route, then close the loop
+         */
+        if($CountRoute) { break; }
+        
+         }
+
+        if(!$CountRoute){
+                  $this->RedicretTo404();
          }    
 
     }
