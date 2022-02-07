@@ -6,6 +6,11 @@ namespace NosoProject\core\sys;
  * This is the class that implements project routing
  */
 
+
+ /**
+  * Еще не реализовано отправку перемены в методы
+  * когда ее передали 
+  */
 class Routes{
     
     private $REQUEST_URI;
