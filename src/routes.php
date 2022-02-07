@@ -1,65 +1,51 @@
 <?php
 
-use NosoProject\views\layout;
 use NosoProject\views\authView;
-use NosoProject\views\faqView;
 use NosoProject\views\faucetView;
 use NosoProject\views\claimView;
 use NosoProject\controllers\authController;
+use NosoProject\views\faqView;
+use NosoProject\views\layout;
 
 use NosoProject\core\sys\titleGenerator;
 use NosoProject\core\sys\Routes;
 
 
-$layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
-$layout->nav();
+    $layout = new Layout(titleGenerator::output(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)));
+    $layout->nav();
+
+    $routes = new Routes();
+
+    $routes->add('/',  function() {
+            new faucetView();
+            }, true);
+
+    $routes->add('/payments','view');
+
+    $routes->add('/faq', function() {
+            new faqView();
+            });
+
+    $routes->add('/404','view');
+
+    $routes->add('/ref','view');
+
+    $routes->add('/claim', function() {
+            new claimView(); 
+            });
+
+    $routes->add('/auth/login', function() {
+            new authController();      
+            });
+
+    $routes->add('/auth', function() {
+            new authView();
+             });
+
+    $routes->run();
 
 
-
-echo "URl ->".$_SERVER['REQUEST_URI']."</br>";
-
-$routes = new Routes();
-
-$routes->add('/', 'lol', true);
-$routes->add('/payments','view');
-$routes->add('/faq','viewe');
-
-$routes->add('/404','view');
-
-$routes->add('/ref/ada','view');
-$routes->run();
-
-/*
-switch(htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES)) {
-    case '/': //Home Page
-        new faucetView();
-        break;
-
-    case '/auth': //Authorization page
-        new authView();
-        break;
-
-    case '/auth/login': //Authorization backend
-        new authController();                
-        break;
-
-    case '/claim':
-        new claimView();
-        break;
-  
-
-    case '/faq':
-        new faqView();
-        break;
-
-    case '/payments':
-        break;
-    default:
-        header("Location: /");
-        break;
-}*/
-
-$layout->footer();
+    $layout->footer();
 
 
 
