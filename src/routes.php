@@ -22,7 +22,7 @@ use NosoProject\core\sys\Routes;
             new faucetView();
             }, true);
 
-    $routes->add('/payments','view');
+    $routes->add('/payments',function() {});
 
     $routes->add('/faq', function() {
             new faqView();
@@ -30,7 +30,7 @@ use NosoProject\core\sys\Routes;
 
     $routes->add('/404', function() { notFoundView::view();  });
 
-    $routes->add('/ref','view');
+    $routes->add('/ref',function() {});
 
     $routes->add('/claim', function() {
             new claimView(); 
