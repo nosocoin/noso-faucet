@@ -66,7 +66,7 @@ class faucetView{
               <div class="notification is-white is-light">You can invite friends and get 50% of every claim made by a friend</div></h6>
               <div class="field has-addons">
               <p class="control is-expanded has-background-white">
-              <input class="input" id="refLinks" type="text" value="'.$_SERVER['HTTP_REFERER'].'ref/'.$this->userInfo->userWallet.'"></p>
+              <input class="input" id="refLinks" type="text" value="'.$_SERVER['HTTP_REFERER'].'ref/?'.$this->userInfo->userWallet.'"></p>
               <p class="control has-background-white">
               <button class="button is-black" onclick="copy()">Copy</button>
               </p></div>'.PHP_EOL;
