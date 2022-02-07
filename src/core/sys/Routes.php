@@ -68,10 +68,9 @@ class Routes{
                 }
 
                 if(isset($route['function'])){
-             //   call_user_func($route['function']);
+                call_user_func($route['function']);
                 }
-               
-                call_user_func( array('NosoProject\test', 'start'));
+            
                 $countRoute = true;
             }
 

@@ -6,6 +6,7 @@ use NosoProject\views\claimView;
 use NosoProject\controllers\authController;
 use NosoProject\views\faqView;
 use NosoProject\views\layout;
+use NosoProject\views\notFoundView;
 
 use NosoProject\core\sys\titleGenerator;
 use NosoProject\core\sys\Routes;
@@ -26,7 +27,7 @@ use NosoProject\core\sys\Routes;
             new faqView();
             });
 
-    $routes->add('/404','view');
+    $routes->add('/404', function() { notFoundView::view();  });
 
     $routes->add('/ref','view');
 
