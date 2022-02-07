@@ -1,6 +1,7 @@
 <?php
 
 namespace NosoProject\controllers;
+use GuzzleHttp\ClientInterface;
 use NosoProject\views\authView;
 use NosoProject\core\sys\DB;
 
@@ -38,15 +39,17 @@ class authController{
      * via the authorization form /auth
      */
     private function checkWallet(){
-        $check = curl_init('https://explorer.nosocoin.com/api/v1/address/'.$this->inputWallet.'.json');
-        curl_setopt($check, CURLOPT_RETURNTRANSFER, true);
-        $decode = json_decode(curl_exec($check), true);
+
+        $client = new \GuzzleHttp\Client(['base_uri' => 'https://explorer.nosocoin.com/api/v1/address/']);
+        $check = $client->request('GET', $this->inputWallet, [
+                    'headers' => [ 'Accept' => 'application/json' ]]);                    
+        $decode = json_decode($check->getBody(), true);
         if($decode["code"] == 200 && $decode["message"] == "Ok"){
             return true;
         }else{
             return false;
         }
-        curl_close($ch);
+        
     }
 
 

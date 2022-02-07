@@ -17,6 +17,7 @@ use NosoProject\core\sys\Routes;
 
     $routes = new Routes();
 
+
     $routes->add('/',  function() {
             new faucetView();
             }, true);
