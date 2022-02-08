@@ -16,10 +16,11 @@
 		{% include "layouts/navbar.twig" %}
 	{% endif %}
 
+    <div class="body">
 	<div class="container body_container ">
 		{% block content %}{% endblock %}
 	</div>
-
+    </div>
     	{% include 'layouts/footer.twig' %}
 
 </body>

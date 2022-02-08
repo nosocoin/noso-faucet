@@ -38,6 +38,12 @@
 	$container['FaucetController'] = function ($container) {
 		return new \NosoProject\Controllers\FaucetController($container);
 	};
+	$container['AuthController'] = function ($container) {
+		return new \NosoProject\Controllers\AuthController($container);
+	};
+	$container['FaqController'] = function ($container) {
+		return new \NosoProject\Controllers\FaqController($container);
+	};
 	
 	
 	
