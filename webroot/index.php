@@ -1,8 +1,11 @@
 <?php
+
 use Dotenv\Dotenv;
 
-//Autoload
-include dirname(__DIR__).'/vendor/autoload.php';
+require  __DIR__ .'/../vendor/autoload.php';
+
+// Config for Slim App
+$config = require_once __DIR__ . '/../src/config.php';
 
 //Start ENV
 $dotenv = Dotenv::createImmutable(dirname(__DIR__).'/config');
@@ -12,7 +15,19 @@ $dotenv->load();
 $dotenv->required(['NOSO_PAY','CLAIM_TIME','MIN_NOSO_PAYMENTS','PERCENT_REF'])->notEmpty();
 
 
-//Enable routing
-require __DIR__ . '/../src/routes.php';
+// Slim App instance
+$app = new \Slim\App($config);
 
-?>
+// Dependencies here
+require_once __DIR__ . '/../src/dependencies.php';
+
+// Routes here
+require_once __DIR__ . '/../src/route.php';
+
+// Run app
+$app->run();
+
+
+
+
+
