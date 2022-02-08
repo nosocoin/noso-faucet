@@ -7,6 +7,7 @@
 
 	final class PaymentsController {
 		protected $container;
+		protected $PaymentsModel;
 		
 		public function __construct($container){
 			$this->container = $container;
