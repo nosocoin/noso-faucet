@@ -5,6 +5,7 @@
 	use \Psr\Http\Message\ResponseInterface as Response;
 	use NosoProject\Model\AuthModel;
 
+	//N4ZR3fKhTUod34evnEcDQX3i6XufBDU
 	
 final class AuthController  {
 
@@ -27,4 +28,14 @@ final class AuthController  {
 			]);
 		}
 		
+
+		public function login(Request $request, Response $response){
+			return $this->container->view->render($response, 'auth.twig', [
+				'title' => 'Authorization',
+				'Count_Users' => $this->AuthModel->getCountUsers(),
+                'Count_Paid' => $this->AuthModel->GetCountPaidNoso(),
+                'Count_Payments' => $this->AuthModel->GetCountPayments(),
+				'ErrorInvalidWallet' => true
+			]);
+		}
 	}

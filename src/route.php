@@ -4,7 +4,7 @@ $app->get('/', 'FaucetController:index');
 	
 $app->get('/auth', 'AuthController:index');
 
-$app->get('/auth/login', 'AuthController:index');
+$app->post('/auth/login', 'AuthController:login');
 
 
 $app->get('/payments', 'PaymentsController:index');
