@@ -2,6 +2,7 @@
 	
 	$container = $app->getContainer();
 
+
 	// Register component on container
 	$container['view'] = function ($container) {
 		$view = new \Slim\Views\Twig(__DIR__ . '/../templates', [
@@ -32,6 +33,19 @@
 			throw new PDOException($e->getMessage(), (int)$e->getCode());
 		}
 	};
+
+
+	function asset($path) {
+		if ($path[0] != '/') {
+			$path = "/{$path}";
+		}
+		return "{$_ENV['APP_URL']}{$path}";
+	}
+	$asset = new Twig\TwigFunction('asset', function ($path) {
+		return asset($path);
+	});
+	$container->get('view')->getEnvironment()->addFunction($asset);
+	
 
 	
 	// Controllers 

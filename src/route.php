@@ -5,6 +5,8 @@ $app->get('/', 'FaucetController:index');
 	
 $app->get('/auth', 'AuthController:index');
 
+$app->get('/payments', 'AuthController:index');
+
 $app->get('/faq', function ($request, $response, $args) {
     return $this->view->render($response, 'faq.twig');
 });

@@ -8,8 +8,7 @@
 	
 	class AuthController extends Controller
 	{
-
-       
+      
 		
 		public function index(Request $request, Response $response)
 		{
