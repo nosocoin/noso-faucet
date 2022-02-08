@@ -14,14 +14,13 @@ $dotenv->load();
 //Check empty env
 $dotenv->required(['NOSO_PAY','CLAIM_TIME','MIN_NOSO_PAYMENTS','PERCENT_REF'])->notEmpty();
 
-
 // Slim App instance
 $app = new \Slim\App($config);
 
-// Dependencies here
+// Dependencies 
 require_once __DIR__ . '/../src/dependencies.php';
 
-// Routes here
+// Routes
 require_once __DIR__ . '/../src/route.php';
 
 // Run app
