@@ -15,11 +15,13 @@
 		return $view;
 	};
 	
+
+	
 	// Controllers 
-	/*
-	$container['HomeController'] = function ($container) {
-		return new \App\Controllers\HomeController($container);
-	};*/
+	
+	$container['FaucetController'] = function ($container) {
+		return new \NosoProject\Controllers\FaucetController($container);
+	};
 	
 	
 	
