@@ -16,9 +16,25 @@
 	};
 	
 
+	$container['db'] = function($c) {
+		$settings = $c->get('settings')['db'];
+		$host = $settings['host'];
+		$port = $settings['port'];
+		$database = $settings['database'];
+		$username = $settings['username'];
+		$password = $settings['password'];
+	
+		$dsn = "mysql:host=$host;dbname=$database";
+	
+		try {
+			return new PDO($dsn, $username, $password);
+		} catch (PDOException $e) {
+			throw new PDOException($e->getMessage(), (int)$e->getCode());
+		}
+	};
+
 	
 	// Controllers 
-	
 	$container['FaucetController'] = function ($container) {
 		return new \NosoProject\Controllers\FaucetController($container);
 	};
