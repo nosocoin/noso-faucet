@@ -15,6 +15,12 @@
 		
 		return $view;
 	};
+
+	$container['cookies'] = function($c){
+		$request = $c->get('request');
+		$request = $request->getCookieParams();
+		return $request;
+	  };
 	
 
 	$container['db'] = function($c) {
@@ -58,6 +64,10 @@
 	$container['FaqController'] = function ($container) {
 		return new \NosoProject\Controllers\FaqController($container);
 	};
+	$container['PaymentsController'] = function ($container) {
+		return new \NosoProject\Controllers\PaymentsController($container);
+	};
+	
 	
 	
 	
