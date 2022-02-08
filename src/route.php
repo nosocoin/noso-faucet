@@ -3,7 +3,6 @@
 $app->get('/', 'FaucetController:index');
 	
 $app->get('/auth', 'AuthController:index');
-
 $app->post('/auth/login', 'AuthController:login');
 
 

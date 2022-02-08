@@ -5,7 +5,6 @@
 	use \Psr\Http\Message\ResponseInterface as Response;
 	use NosoProject\Model\AuthModel;
 
-	//N4ZR3fKhTUod34evnEcDQX3i6XufBDU
 	
 final class AuthController  {
 
