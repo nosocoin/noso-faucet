@@ -1,9 +1,11 @@
 <?php
 
-
 $app->get('/', 'FaucetController:index');
 	
 $app->get('/auth', 'AuthController:index');
+
+$app->get('/auth/login', 'AuthController:index');
+
 
 $app->get('/payments', 'PaymentsController:index');
 

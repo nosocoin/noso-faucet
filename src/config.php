@@ -1,5 +1,4 @@
 <?php
-
 use Dotenv\Dotenv;
 
 //Start ENV
@@ -12,7 +11,6 @@ $dotenv->required(['NOSO_PAY','CLAIM_TIME','MIN_NOSO_PAYMENTS','PERCENT_REF'])->
 return ['settings' => [
     'addContentLengthHeader' => false,
     'displayErrorDetails' => true,
-
     'db' => [
         'host' => $_ENV['FAUCET_DATABASE_HOST'],
         'database' => $_ENV['FAUCET_DATABASE'],

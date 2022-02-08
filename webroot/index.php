@@ -1,7 +1,4 @@
 <?php
-
-
-
 require  __DIR__ .'/../vendor/autoload.php';
 
 // Config for Slim App

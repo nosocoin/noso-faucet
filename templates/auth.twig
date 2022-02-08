@@ -2,6 +2,9 @@
 
 {% block content %}
    <div class="columns"><div class="column is-half">
+   {% if ErrorInvalidWallet %}
+   <div class="notification is-danger">Need to provide a valid address!!</div>
+   {% endif %}
       <article class="message has-background-black-ter">
       <div class="message-header"><p>Login</p></div>
       <div class="message-body has-background-white">
