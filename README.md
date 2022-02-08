@@ -6,6 +6,14 @@ Implementation of a faucet for the cryptocoin Noso.
 ![bulma version](https://img.shields.io/badge/bulma-0.9.0-4169e1.svg)
 
 
+## Install the Application
+
+Run this command from the directory in which you want to install your Noso-Faucet. You will require PHP 7.4 or newer.
+
+```bash
+composer install
+```
+
 ## Setting the .env
 
 On the folder `config` pleas rename `.env.example` to `.env` and edit the values.
