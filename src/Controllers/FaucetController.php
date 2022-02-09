@@ -17,8 +17,7 @@
 	    }
 
 	    public function index(Request $request, Response $response){
-			return $this->container->view->render($response, 'faucet.twig', [
-				'title' => 'Home Page']);
+			return $this->container->view->render($response, 'faucet.twig', $this->FaucetModel->OptionsArray());
 	
 			}
 		
