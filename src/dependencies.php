@@ -24,26 +24,33 @@
 	
 
 	$container['db'] = function($c) {
-		$Base = "mysql:host=$settings[host];dbname=$settings[database]";
+		$settings = $c->get('settings')['db'];
+		$host = $settings['host'];
+		$port = $settings['port'];
+		$database = $settings['database'];
+		$username = $settings['username'];
+		$password = $settings['password'];
+	
+		$Base = "mysql:host=$host;dbname=$database";
 		try {
-			return new PDO($Base,  $settings['username'], $settings['password']);
+			return new PDO($Base, $username, $password);
 		} catch (PDOException $e) {
 			throw new PDOException($e->getMessage(), (int)$e->getCode());
 		}
 	};
 
-	$container['UserAuthInfo'] = function($c) {
+	$container['UserAuthInfo'] = function($container) {
 		$cookieWallet = !empty($_COOKIE['wallet']) ?  htmlspecialchars($_COOKIE['wallet'], ENT_QUOTES) : '';
 		$cookieId = !empty($_COOKIE['id']) ?  htmlspecialchars($_COOKIE['id'], ENT_QUOTES) : '';
 
 		$UserInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
-		$UserInforSQL->execute(array('wallet' => $this->cookieWallet));
-		if(md5($array['id']) == $array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC)){
-		return $array; }
-		else{
+		$UserInforSQL->execute(array('wallet' => $cookieWallet));
+		if($array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId ){
+		return $array; 
+	    } else{
 			unset($UserInforSQL);
+			return false;
 		}
-
 	};
 
 	function asset($path) {
