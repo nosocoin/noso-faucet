@@ -2,8 +2,6 @@
 	
 	$container = $app->getContainer();
 
-
-	// Register component on container
 	$container['view'] = function ($container) {
 		$view = new \Slim\Views\Twig(__DIR__ . '/../templates', [
 			'cache' => false,
@@ -65,6 +63,8 @@
 	$container->get('view')->getEnvironment()->addFunction($asset);
 	
 
+
+
 	
 	// Controllers 
 	$container['FaucetController'] = function ($container) {
@@ -77,6 +77,10 @@
 
 	$container['PaymentsController'] = function ($container) {
 		return new \NosoProject\Controllers\PaymentsController($container);
+	};
+
+	$container['RefLinksModel'] = function () {
+		return new \NosoProject\Model\RefLnksModel($container);
 	};
 	
 	
