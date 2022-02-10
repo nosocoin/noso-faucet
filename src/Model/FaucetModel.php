@@ -3,25 +3,47 @@
 namespace NosoProject\Model;
 
 final class FaucetModel {
-    public $UserArray;
+    private $UserArray;
+    private $DB;
+
 
 
     public function __construct($container){
             $this->UserArray = $container->get('UserAuthInfo');
+            $this->DB = $container->get('db');
     }
-
+    
 
     public function OptionsArray(){
       return [
 				'title' => 'Home Page',
         'Wallet' => $this->UserArray['wallet'],
-        'Ballance' => '0',
-        'NosoAllTime' => '0',
-        'Referal' => '0',
-        'FromReferals' => '0',
-        'TotalPaidOut' => '23',
+        'Ballance' => $this->UserArray['balance'],
+        'NosoAllTime' => $this->getCountAllPaid(),
+        'Referrals' => $this->GetCountRefferals(),
+        'FromReferals' => $this->UserArray['refBalance'],
+        'TotalPaidOut' => $this->UserArray['paidOut'],
         'RefLink' => 'http://localhost:8080/',
       ];
     }
+
+ 
+
+
+    /**
+     * Let's count the number of referrals
+     */
+    private function GetCountRefferals(){
+      $inquiry = $this->DB->prepare("SELECT * FROM `users` WHERE  `ref` = :userWallet ");
+      $inquiry->execute(array('userWallet' => $this->UserArray['wallet']));
+      return $inquiry->rowCount();
+      }
+
+       /**
+     * Method that returns the number of payments for all time
+     */
+    private function getCountAllPaid(){
+      return $this->UserArray['balance'] + $this->UserArray['paidOut'] + $this->UserArray['refBalance'];
+  }
 
 }

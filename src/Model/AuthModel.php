@@ -128,8 +128,8 @@ class AuthModel{
 	   * Get the number of payments
 	   */
 	public function GetCountPayments(){
-		$inquiry = $this->DB->prepare("SELECT * FROM `payments` WHERE  `status` ");
-		$inquiry->execute(array('ok'));
+        $inquiry = $this->DB->prepare("SELECT * FROM `payments` WHERE  `status` = :statusP ");
+        $inquiry->execute(array('statusP' => 'ok'));
 		return CoreFunctional::FormatNumber($inquiry->rowCount());
 	  }
 
