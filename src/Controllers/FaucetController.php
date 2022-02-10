@@ -17,7 +17,10 @@ final class FaucetController {
 	}
 
 	public function index(Request $request, Response $response){
+		if($this->container->get('UserAuthInfo'))
 		return $this->container->view->render($response, 'faucet.twig', $this->FaucetModel->OptionsArray());
+		else
+		return $response->withStatus(302)->withHeader('Location', '/auth');
 	
 	}
 		
