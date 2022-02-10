@@ -22,8 +22,8 @@ class AuthModel{
 			'title' => 'Authorization',
 			'Count_Users' => $this->getCountUsers(),
 			'Count_Paid' => $this->GetCountPaidNoso(),
-			'Count_Payments' => $this->GetCountPayments(),
-			'ErrorInvalidWallet' => $ErrorInvalidWallet
+			'ErrorInvalidWallet' => $ErrorInvalidWallet,
+            'viewPayments' => false
 		];	
 	}
     
@@ -124,14 +124,7 @@ class AuthModel{
 		return  CoreFunctional::FormatNumber($inquiry->fetchColumn());
 	  }
   
-	  /**
-	   * Get the number of payments
-	   */
-	public function GetCountPayments(){
-        $inquiry = $this->DB->prepare("SELECT * FROM `payments` WHERE  `status` = :statusP ");
-        $inquiry->execute(array('statusP' => 'ok'));
-		return CoreFunctional::FormatNumber($inquiry->rowCount());
-	  }
+
 
 
 }

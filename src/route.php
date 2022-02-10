@@ -9,7 +9,9 @@ $app->post('/auth/login', 'AuthController:login');
 $app->get('/payments', 'PaymentsController:index');
 
 $app->get('/faq', function ($request, $response, $args) {
-    return $this->view->render($response, 'faq.twig', ['title' => 'FAQ']);
+    return $this->view->render($response, 'faq.twig', [
+        'title' => 'FAQ',
+        'viewPayments' => false]);
 });
     
 
