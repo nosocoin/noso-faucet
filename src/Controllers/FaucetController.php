@@ -11,7 +11,7 @@ final class FaucetController {
 
 	public function __construct($container){
 		$this->container = $container;
-		$this->FaucetModel = new FaucetModel($container->get('db'));
+		$this->FaucetModel = new FaucetModel($container);
 	     
 	
 	}

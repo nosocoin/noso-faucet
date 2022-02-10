@@ -13,7 +13,7 @@ final class AuthController  {
 
 	public function __construct($container){
 		$this->container = $container;
-		$this->AuthModel = new AuthModel($container->get('db'));
+		$this->AuthModel = new AuthModel($container);
 	
 	}
 

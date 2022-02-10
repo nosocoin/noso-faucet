@@ -8,10 +8,10 @@ class AuthModel{
 	protected $inputWallet;
     protected $refer;
 
-    public function __construct($DB){
+    public function __construct($container){
 		$this->inputWallet = !empty($_POST['walletAdress']) ?  htmlspecialchars($_POST['walletAdress'], ENT_QUOTES) : '';
         $this->refer = !empty($_COOKIE['refer']) ?  htmlspecialchars($_COOKIE['refer'], ENT_QUOTES) : '';
-        $this->DB = $DB;
+        $this->DB = $container->get('db');
     }
 
 	/**
