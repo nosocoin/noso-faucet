@@ -32,7 +32,7 @@ class CoreFunctional{
 * Need to rewrite this function it is very clumsy
 * Used it back in 14
 */
- public function SetTime($time){
+ public static function SetTime($time){
     if(is_numeric($time)){
     $value = array("days" => 0, "hours" => 0,
     "minutes" => 0, "seconds" => 0,);

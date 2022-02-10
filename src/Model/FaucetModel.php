@@ -2,6 +2,8 @@
 
 namespace NosoProject\Model;
 
+use NosoProject\Core\CoreFunctional;
+
 final class FaucetModel {
     private $UserArray;
     private $DB;
@@ -23,8 +25,11 @@ final class FaucetModel {
         'Referrals' => $this->GetCountRefferals(),
         'FromReferals' => $this->UserArray['refBalance'],
         'TotalPaidOut' => $this->UserArray['paidOut'],
-        'RefLink' => 'http://localhost:8080/',
-        'viewPayments' => true
+        'RefLink' => 'http://localhost:8080/ref/N2CqwFLrgyfHPwFGtmGnyZhp7vHMTGY',
+        'ViewPayments' => true,
+        'ViewClaim' => $this->CheckAccesClaim(),
+        'NosoPayConfig' => $_ENV['NOSO_PAY'],
+        'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
       ];
     }
 
@@ -45,6 +50,16 @@ final class FaucetModel {
      */
     private function getCountAllPaid(){
       return $this->UserArray['balance'] + $this->UserArray['paidOut'] + $this->UserArray['refBalance'];
-  }
+    }
+
+    /**
+     * Check whether it is possible to show a claim
+     */
+    private function CheckAccesClaim(){
+      if(($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME'])<time())
+        return true;
+      
+  
+    }
 
 }

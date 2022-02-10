@@ -23,7 +23,7 @@ class AuthModel{
 			'Count_Users' => $this->getCountUsers(),
 			'Count_Paid' => $this->GetCountPaidNoso(),
 			'ErrorInvalidWallet' => $ErrorInvalidWallet,
-            'viewPayments' => false
+            'ViewPayments' => false
 		];	
 	}
     

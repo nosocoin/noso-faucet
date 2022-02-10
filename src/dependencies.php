@@ -79,8 +79,8 @@
 		return new \NosoProject\Controllers\PaymentsController($container);
 	};
 
-	$container['RefLinksModel'] = function () {
-		return new \NosoProject\Model\RefLnksModel($container);
+	$container['RefLinkController'] = function () {
+		return new \NosoProject\Controllers\RefLinkController();
 	};
 	
 	

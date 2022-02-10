@@ -1,6 +1,6 @@
 <?php
 
-namespace NosoProject\Model;
+namespace NosoProject\Controllers;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -9,7 +9,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
  * and then redirects to authorization
  */
 
-final class RefLnksModel {
+final class RefLinkController {
 
     public function index(Request $request, Response $response, $args){
         $links = htmlspecialchars($args['refLinks']);

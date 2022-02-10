@@ -1,22 +1,40 @@
 {% extends 'layouts/page.twig' %}
 
 {% block content %}
-  <div class="columns"><div class="column is-half">
+<div class="columns"><div class="column is-half">
         <div class="box"><div class="control has-background-white">
               <h6 class="title is-6">Wallet:</h6>
               <h6 class="subtitle is-6 has-text-grey">{{Wallet}}</h6>
         </div>
         <div class="control has-background-white">
-              <h6 class="title is-6">Balance:</h6>
-              <h6 class="subtitle is-6 has-text-warning-dark"><span class="tag is-warning is-medium">{{Ballance}} NOSO</span></h6>
+        <div class="field is-grouped is-grouped-multiline">
+        <div class="tags has-addons ">
+              <span class="tag is-dark is-medium">Balance:</span>
+              <span class="tag is-warning is-medium">{{Ballance}} NOSO</span>
+        </div></div>
         </div></div>
 
+      {% if ViewClaim %}
+        <div class="box"><div class="control has-background-white">
+              <strong><h6 class="title is-6">1. Claim</h6></string>
+              <h6 class="subtitle is-6 has-text-grey">By filing a claim you can get <strong class="has-text-warning-dark"> {{NosoPayConfig}} NOSO.</strong></br>
+                                                    You can file a claim every <strong>{{ClaimTime}}</strong></h6>
+            <form action="/claim" method="post">
+              <input type="hidden" name="TOKEN_HIDEEN" value="">
+              <button class="button is-danger"><strong>NEXT</strong></button>
+            </form>
+        </div></div>
+      {% else %}
+
+        <div class="notification is-warning is-light">You have already claimed in the last '.$this->coreFunctional->setTime($_ENV['CLAIM_TIME']).'</br>
+              You can claim again in '.$this->coreFunctional->setTime(($this->userInfo->userLastclaim + $_ENV['CLAIM_TIME']) - time()).'</div>
+      {% endif %}
+
+</div>
 
 
-
-
-        </div><div class="column">
-        <div class="message-header has-background-black-ter">
+<div class="column">
+      <div class="message-header has-background-black-ter">
                <p>Stats</p></div>
         <div class="box">
         <div class="control has-background-white">
@@ -34,9 +52,9 @@
         <div class="control has-background-white">
               <h6 class="title is-6">Total paid out:</h6>
               <h6 class="subtitle is-6"><span class="tag is-danger is-medium">{{TotalPaidOut}} NOSO</span></h6>
-              </div></div>
+      </div></div>
 
-        <div class="message-header has-background-black-ter">
+      <div class="message-header has-background-black-ter">
               <p>Referrals Link</p>
               </div>
         <div class="box">
@@ -47,7 +65,8 @@
               <input class="input" id="refLinks" type="text" value="{{RefLink}}"></p>
               <p class="control has-background-white">
               <button class="button is-black" onclick="copy()">Copy</button></p>
-        </div></div></div></div>
+      </div></div></div>
+</div>
 
  
 {% endblock %}
