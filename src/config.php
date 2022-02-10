@@ -12,11 +12,15 @@ return ['settings' => [
     'addContentLengthHeader' => false,
     'displayErrorDetails' => true,
     'db' => [
-        'host' => $_ENV['FAUCET_DATABASE_HOST'],
-        'database' => $_ENV['FAUCET_DATABASE'],
-        'username' => $_ENV['FAUCET_DATABASE_USER'],
-        'password' => $_ENV['FAUCET_DATABASE_PASSWORD'],
+        'Host' => $_ENV['FAUCET_DATABASE_HOST'],
+        'Database' => $_ENV['FAUCET_DATABASE'],
+        'Username' => $_ENV['FAUCET_DATABASE_USER'],
+        'Password' => $_ENV['FAUCET_DATABASE_PASSWORD']
     ],
+    'recaptcha' => [
+        'PublicKey' => $_ENV['PUBLIC_KEY_RE'],
+        'PrivateKey' => $_ENV['PRIVATE_KEY_RE']
+    ]
 ]
 
 ];

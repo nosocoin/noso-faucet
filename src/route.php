@@ -7,6 +7,7 @@ $app->post('/auth/login', 'AuthController:login');
 
 $app->get('/ref/{refLinks}', 'RefLinkController:index');
 
+$app->post('/claim', 'ClaimController:index');
 
 $app->get('/payments', 'PaymentsController:index');
 

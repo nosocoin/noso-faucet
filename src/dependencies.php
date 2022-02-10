@@ -14,20 +14,19 @@
 		return $view;
 	};
 
-	$container['cookies'] = function($c){
-		$request = $c->get('request');
+	$container['cookies'] = function($container){
+		$request = $container->get('request');
 		$request = $request->getCookieParams();
 		return $request;
 	  };
 	
 
-	$container['db'] = function($c) {
-		$settings = $c->get('settings')['db'];
-		$host = $settings['host'];
-		$port = $settings['port'];
-		$database = $settings['database'];
-		$username = $settings['username'];
-		$password = $settings['password'];
+	$container['db'] = function($container) {
+		$settings = $container->get('settings')['db'];
+		$host = $settings['Host'];
+		$database = $settings['Database'];
+		$username = $settings['Username'];
+		$password = $settings['Password'];
 	
 		$Base = "mysql:host=$host;dbname=$database";
 		try {
@@ -83,6 +82,9 @@
 		return new \NosoProject\Controllers\RefLinkController();
 	};
 	
+	$container['ClaimController'] = function ($container) {
+		return new \NosoProject\Controllers\ClaimController($container);
+	};
 	
 	
 	
