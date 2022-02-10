@@ -24,6 +24,7 @@ final class FaucetModel {
         'FromReferals' => $this->UserArray['refBalance'],
         'TotalPaidOut' => $this->UserArray['paidOut'],
         'RefLink' => 'http://localhost:8080/',
+        'viewPayments' => true
       ];
     }
 
