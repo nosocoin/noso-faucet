@@ -36,10 +36,13 @@
 		$cookieWallet = !empty($_COOKIE['wallet']) ?  htmlspecialchars($_COOKIE['wallet'], ENT_QUOTES) : '';
 		$cookieId = !empty($_COOKIE['id']) ?  htmlspecialchars($_COOKIE['id'], ENT_QUOTES) : '';
 
-		$userInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
-		$userInforSQL->execute(array('wallet' => $this->cookieWallet));
-		if(md5($array['id']) == $array = $userInforSQL->fetch(\PDO::FETCH_ASSOC) ){
-		return $array;}
+		$UserInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
+		$UserInforSQL->execute(array('wallet' => $this->cookieWallet));
+		if(md5($array['id']) == $array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC)){
+		return $array; }
+		else{
+			unset($UserInforSQL);
+		}
 
 	};
 
