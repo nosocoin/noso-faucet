@@ -2,6 +2,11 @@
   background: #EBEBEB;
 }
 
+.control_new{
+  padding: 10px;
+}
+
+
 .body_container {
   padding: 20px;
 }
@@ -29,3 +34,4 @@
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+

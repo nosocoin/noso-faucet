@@ -2,21 +2,30 @@
 
 {% block content %}
 <div class="columns"><div class="column is-half">
+
+
         <div class="box"><div class="control has-background-white">
-              <h6 class="title is-6">Wallet:</h6>
-              <h6 class="subtitle is-6 has-text-grey">{{Wallet}}</h6>
+               <div class="heading">Wallet:</div>
+        <div class="title is-5">{{Wallet}} NOSO</div>
         </div>
-        <div class="control has-background-white">
         <div class="field is-grouped is-grouped-multiline">
-        <div class="tags has-addons ">
+        <div class="control_new has-background-white">
+       <div class="tags has-addons">
               <span class="tag is-dark is-medium">Balance:</span>
               <span class="tag is-warning is-medium">{{Ballance}} NOSO</span>
         </div></div>
+        
+         <div class="control_new has-background-white">
+        <div class="tags has-addons"> 
+              <span class="tag is-dark is-medium">From referrals:</span>
+              <span class="tag is-danger is-medium">{{FromReferals}} NOSO</span>
+        </div></div>
+        
         </div></div>
 
       {% if ViewClaim %}
         <div class="box"><div class="control has-background-white">
-              <strong><h6 class="title is-6">1. Claim</h6></string>
+              <strong><h6 class="title is-5">1. Claim</h6></string>
               <h6 class="subtitle is-6 has-text-grey">By filing a claim you can get <strong class="has-text-warning-dark"> {{NosoPayConfig}} NOSO.</strong></br>
                                                     You can file a claim every <strong>{{ClaimTime}}</strong></h6>
             <form action="/claim" method="post">
@@ -34,38 +43,46 @@
 
 
 <div class="column">
-      <div class="message-header has-background-black-ter">
-               <p>Stats</p></div>
+    
         <div class="box">
-        <div class="control has-background-white">
-              <h6 class="title is-6">Earned all time:</h6>
-              <h6 class="subtitle is-6 has-text-warning-dark"><span class="tag is-link is-medium">{{NosoAllTime}} NOSO</span></h6>
-              </div>
-        <div class="control has-background-white">
-              <h6 class="title is-6">Referrals:</h6>
-              <h6 class="subtitle is-6 "><span class="tag is-dark is-medium">{{Referrals}} </span></h6>
-              </div>
-        <div class="control has-background-white">
-              <h6 class="title is-6">From referrals:</h6>
-              <h6 class="subtitle is-6 has-text-warning-dark"><span class="tag is-warning is-medium">{{FromReferals}} NOSO</span></h6>
-              </div>
-        <div class="control has-background-white">
-              <h6 class="title is-6">Total paid out:</h6>
-              <h6 class="subtitle is-6"><span class="tag is-danger is-medium">{{TotalPaidOut}} NOSO</span></h6>
+        <div class="columns is-mobile is-vcentered">
+        <div class="column is-8">
+        <div class="heading">Earned all time:</div>
+        <div class="title">{{NosoAllTime}} NOSO</div></div>
+        </div></div>
+
+       <div class="box">
+        <div class="columns is-mobile is-vcentered">
+        <div class="column is-8">
+        <div class="heading">Referrals:</div>
+        <div class="title">{{Referrals}} </div></div>
       </div></div>
 
-      <div class="message-header has-background-black-ter">
-              <p>Referrals Link</p>
-              </div>
-        <div class="box">
-              <h6 class="subtitle is-6">
-              <div class="notification is-white is-light">You can invite friends and get 50% of every claim made by a friend</div></h6>
-        <div class="field has-addons">
-              <p class="control is-expanded has-background-white">
-              <input class="input" id="refLinks" type="text" value="{{RefLink}}"></p>
-              <p class="control has-background-white">
-              <button class="button is-black" onclick="copy()">Copy</button></p>
-      </div></div></div>
+       <div class="box">
+        <div class="columns is-mobile is-vcentered">
+        <div class="column is-8">
+        <div class="heading">Total paid out:</div>
+        <div class="title">{{TotalPaidOut}} NOSO</div></div>
+      </div></div>
+
+
+      
+       <div class="box">
+        <div class="columns is-mobile is-vcentered">
+        <div class="column is-8">
+        <div class="heading">Referrals Link:</div>
+        <div class="title is-6 has-text-grey" id="refLinks">{{RefLink}}</div></div>
+        <div class="column"> <button class="button is-black is-pulled-right" onclick="copy()">Copy</button></p></div>
+      </div></div>
+</div>
+
+
+
+
+
+
+
+
 </div>
 
  
