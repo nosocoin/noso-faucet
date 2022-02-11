@@ -8,7 +8,8 @@
         "slim/twig-view": "^2.5",
         "vlucas/phpdotenv": "^5.4",
         "guzzlehttp/guzzle": "^7.4",
-        "dflydev/fig-cookies": "^3.0"
+        "dflydev/fig-cookies": "^3.0",
+        "nesbot/carbon": "^2.56"
     },
     "autoload": {
         "psr-4": {
