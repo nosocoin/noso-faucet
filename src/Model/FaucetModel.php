@@ -32,9 +32,7 @@ final class FaucetModel {
         'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
       ];
     }
-
- 
-
+    
 
     /**
      * Let's count the number of referrals
