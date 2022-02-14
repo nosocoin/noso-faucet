@@ -14,7 +14,7 @@ final class Cookie{
 
     static function get($request, $key, $default = null) {
         $cookie = FigRequestCookies::get($request, $key,$default);
-        return !$cookie->getValue() ? null : $cookie->getValue();
+        return !$cookie->getValue() ? null :   htmlspecialchars($cookie->getValue(), ENT_QUOTES);
     }
 
     static function add($response, $key, $value, $expire_val, $expire_unit) {
@@ -33,7 +33,7 @@ final class Cookie{
     static function remove($response, $key){
         return FigResponseCookies::set($response, SetCookie::create($key)
 		->withValue(null)
-        ->withExpires('Tue, 15-Jan-2013 21:47:38 GMT')
+        ->withExpires('Tue, 22-Jan-2002 22:22:22 GMT')
 		->withPath('/')
 	);
     }

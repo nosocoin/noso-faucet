@@ -11,14 +11,7 @@ class AuthModel{
     protected $ConnectId;
 
     public function __construct($container){
-		$this->inputWallet = !empty($_POST['walletAdress']) ?  htmlspecialchars($_POST['walletAdress'], ENT_QUOTES) : '';
-
-        ///Здесь нужно получить эти кукки из контролерра
-        $this->refer = !empty($_COOKIE['refer']) ?  htmlspecialchars($_COOKIE['refer'], ENT_QUOTES) : '';
-
-
-
-        
+		$this->inputWallet = !empty($_POST['walletAdress']) ?  htmlspecialchars($_POST['walletAdress'], ENT_QUOTES) : '';  
         $this->DB = $container->get('db');
         $this->container = $container;
     }
@@ -54,7 +47,8 @@ class AuthModel{
     /**
      * The method that determines the next steps! After receiving the wallet address.
      */
-	public function routeAuth(){
+	public function routeAuth($ref){
+        $this->refer = !empty($ref) ? $ref : '';
         return $this->checkWallet() ? $this->authStart() : false;
     }
 

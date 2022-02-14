@@ -30,14 +30,12 @@
 
 
 	public function index(Request $request, Response $response){
-	
 			return $this->container->view->render($response, 'auth.twig',
-			 ['title' => 'Authorization',
-			  'wall' =>  Cookie::get($request, 'wallet')]);
+			$this->AuthModel->OptionArray(false));
 	}
 		
 	public function login(Request $request, Response $response){
-			if($this->AuthModel->routeAuth()){
+			if($this->AuthModel->routeAuth(Cookie::get($response, 'ref', ''))){
 				$response = $this->CreateCookie($response);
 				return $response->withStatus(302)->withHeader('Location', '/');
 			}else{
