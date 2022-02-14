@@ -25,7 +25,7 @@ final class FaucetModel {
         'Referrals' => $this->GetCountRefferals(),
         'FromReferals' => $this->UserArray['refBalance'],
         'TotalPaidOut' => $this->UserArray['paidOut'],
-        'RefLink' => 'http://localhost:8080/ref/N2CqwFLrgyfHPwFGtmGnyZhp7vHMTGY',
+        'RefLink' => $_SERVER['HTTP_HOST'].'/ref/N2CqwFLrgyfHPwFGtmGnyZhp7vHMTGY',
         'ViewPayments' => true,
         'ViewClaim' => $this->CheckAccesClaim(),
         'NosoPayConfig' => $_ENV['NOSO_PAY'],
