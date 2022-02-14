@@ -24,10 +24,10 @@
 		$arrayCokies = $this->AuthModel->CookiesArray();
 		$response = Cookie::add($response, 'wallet', $arrayCokies['wallet'], 1, 'month');
 		$response = Cookie::add($response, 'id', $arrayCokies['id'], 1, 'month');
-		$response = Cookie::remove($response, 'ref');
+		$response = Cookie::remove($response, 'refer');
 		return $response;
 	}
-
+//	N2RKVvyf254FFSR7BZgduCkNEbzizE2
 
 	public function index(Request $request, Response $response){
 			return $this->container->view->render($response, 'auth.twig',
@@ -35,7 +35,7 @@
 	}
 		
 	public function login(Request $request, Response $response){
-			if($this->AuthModel->routeAuth(Cookie::get($response, 'ref', ''))){
+			if($this->AuthModel->routeAuth(Cookie::get($request, 'refer', ''))){
 				$response = $this->CreateCookie($response);
 				return $response->withStatus(302)->withHeader('Location', '/');
 			}else{

@@ -13,7 +13,7 @@ use Carbon\Carbon;
 final class Cookie{
 
     static function get($request, $key, $default = null) {
-        $cookie = FigRequestCookies::get($request, $key,$default);
+        $cookie = FigRequestCookies::get($request, $key, $default);
         return !$cookie->getValue() ? null :   htmlspecialchars($cookie->getValue(), ENT_QUOTES);
     }
 
