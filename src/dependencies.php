@@ -1,5 +1,6 @@
 <?php
-	
+	use NosoProject\Core\Cookie;
+
 	$container = $app->getContainer();
 
 	$container['view'] = function ($container) {
@@ -37,8 +38,9 @@
 	};
 
 	$container['UserAuthInfo'] = function($container) {
-		$cookieWallet = !empty($_COOKIE['wallet']) ?  htmlspecialchars($_COOKIE['wallet'], ENT_QUOTES) : '';
-		$cookieId = !empty($_COOKIE['id']) ?  htmlspecialchars($_COOKIE['id'], ENT_QUOTES) : '';
+
+		$cookieWallet = Cookie::get($container->get('request'), 'wallet', '');
+		$cookieId =  Cookie::get($container->get('request'), 'id', '');
 
 		$UserInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
 		$UserInforSQL->execute(array('wallet' => $cookieWallet));
@@ -85,6 +87,14 @@
 	$container['ClaimController'] = function ($container) {
 		return new \NosoProject\Controllers\ClaimController($container);
 	};
+	
+/**
+ * DELETE
+ */
+	$container['TestController'] = function ($container) {
+		return new \NosoProject\Controllers\TestController($container);
+	};
+	
 	
 	
 	

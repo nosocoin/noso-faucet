@@ -6,12 +6,21 @@ use NosoProject\Core\CoreFunctional;
 class AuthModel{
     private $DB;
 	protected $inputWallet;
-    protected $refer;
+    protected $refer; 
+    protected $container;
+    protected $ConnectId;
 
     public function __construct($container){
 		$this->inputWallet = !empty($_POST['walletAdress']) ?  htmlspecialchars($_POST['walletAdress'], ENT_QUOTES) : '';
+
+        ///Здесь нужно получить эти кукки из контролерра
         $this->refer = !empty($_COOKIE['refer']) ?  htmlspecialchars($_COOKIE['refer'], ENT_QUOTES) : '';
+
+
+
+        
         $this->DB = $container->get('db');
+        $this->container = $container;
     }
 
 	/**
@@ -24,19 +33,42 @@ class AuthModel{
 			'Count_Paid' => $this->GetCountPaidNoso(),
 			'ErrorInvalidWallet' => $ErrorInvalidWallet,
             'ViewPayments' => false
+           
 		];	
 	}
+
+
+    /**
+     * Method that returns an array of data to create cookies
+     */
+    public function CookiesArray(){
+		return empty($this->ConnectId) ? false :array(
+			'wallet' => $this->inputWallet,
+			'id' => md5($this->ConnectId)
+        );	
+	}
+
+
+
+       /**
+     * The method that creates the cookie made a method to avoid duplicate lines
+     * (Maybe it's a bug, but sometimes cookies get lost.)
+     */
+    private function createCookie($id){
+        
+        /*   setcookie("wallet", $this->inputWallet, time() + 2629743, "/");
+           setcookie("id", md5($id), time() + 2629743, "/");
+           setcookie("refer",  null, time() - 20, "/");   */
+         
+       }
+
+
     
     /**
      * The method that determines the next steps! After receiving the wallet address.
      */
 	public function routeAuth(){
-        if($this->checkWallet()){
-			return $this->authStart();
-			header("Location: /");
-        }else{
-          return false;
-        }
+        return $this->checkWallet() ? $this->authStart() : false;
     }
 
     /**
@@ -64,15 +96,12 @@ class AuthModel{
      * ---- if the address does not exist, then we will create an entry in the database, and continue authorization
      */
     private function authStart(){
-
-        $idUserConect;
-
         //Let's make a request whether this user exists
         $connect = $this->DB->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
         $connect->execute(array('wallet' => $this->inputWallet));
 
      if($array = $connect->fetch(\PDO::FETCH_ASSOC)){
-        $this->createCookie($array['id']);
+        $this->ConnectId = $array['id'];
      }else{
          unset($array);
          //We also need to check if the ref exists
@@ -90,21 +119,13 @@ class AuthModel{
 
         $Insert = $this->DB->prepare("INSERT INTO `users` SET `wallet` = :wallet, `ref` = :ref, `lastclaim` = :lastclaim");
         $Insert->execute(array('wallet' =>  $this->inputWallet, 'ref' => $referal, 'lastclaim' => time()-3800));
-        $this->createCookie($this->DB->lastInsertId());
+        $this->ConnectId = $this->DB->lastInsertId();
      }
      
 	 return true;
     }
 
-    /**
-     * The method that creates the cookie made a method to avoid duplicate lines
-     * (Maybe it's a bug, but sometimes cookies get lost.)
-     */
-    private function createCookie($id){
-        setcookie("wallet", $this->inputWallet, time() + 2629743, "/");
-        setcookie("id", md5($id), time() + 2629743, "/");
-        setcookie("refer",  null, time() - 20, "/");   
-    }
+ 
 
      /**
      * Get the number of users

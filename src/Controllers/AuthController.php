@@ -4,15 +4,9 @@
 	use \Psr\Http\Message\ServerRequestInterface as Request;
 	use \Psr\Http\Message\ResponseInterface as Response;
 	use NosoProject\Model\AuthModel;
+	use NosoProject\Core\Cookie;
 
-	use Dflydev\FigCookies\Modifier\SameSite;
-    use Dflydev\FigCookies\SetCookie;
-	use Dflydev\FigCookies\FigResponseCookies;
-	use Dflydev\FigCookies\FigRequestCookies;
-
-	use Carbon\Carbon;
-	use NosoProject\Core\Cookies;
-final class AuthController  {
+  final class AuthController  {
 
 	protected $container;
 	protected $AuthModel;
@@ -25,25 +19,21 @@ final class AuthController  {
 
 
 	public function index(Request $request, Response $response){
-
-
 	
-
-		$cookie = FigRequestCookies::get($request,'theme', 'default');
 			return $this->container->view->render($response, 'auth.twig',
 			 [
 				'title' => 'Authorization',
-				'wall' => Cookies::get($request, 'name')
+				'wall' =>  Cookie::get($request, 'wallet')
 			   
 			]	);
 	}
 		
 	public function login(Request $request, Response $response){
 			if($this->AuthModel->routeAuth()){
+			$arrayCokies = $this->AuthModel->CookiesArray();
+				$response = Cookie::add($response, 'wallet', $arrayCokies['wallet'], 1, 'month');
+				$response = Cookie::add($response, 'id', $arrayCokies['id'], 1, 'month');
 			
-			
-		
-				Cookies::add($response, 'name', 'value', 1, 'month');
 
 				return $response->withStatus(302)->withHeader('Location', '/');
 			}else{
