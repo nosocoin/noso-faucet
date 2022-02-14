@@ -19,8 +19,6 @@
 
 		public function index(Request $request, Response $response){
 			if($this->container->get('UserAuthInfo')){
-
-				$response = Cookie::remove($response, 'id');
 			
 			return $this->container->view->render($response, 'payments.twig', [
 				'title' => 'Payments',
