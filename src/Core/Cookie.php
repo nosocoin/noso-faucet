@@ -31,7 +31,11 @@ final class Cookie{
     }
 
     static function remove($response, $key){
-        return FigResponseCookies::remove($response, $key);
+        return FigResponseCookies::set($response, SetCookie::create($key)
+		->withValue(null)
+        ->withExpires('Tue, 15-Jan-2013 21:47:38 GMT')
+		->withPath('/')
+	);
     }
 }
 
