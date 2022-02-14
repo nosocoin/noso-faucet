@@ -30,7 +30,7 @@ final class Cookie{
 
     }
 
-    static function remove($res, $key){
+    static function remove($response, $key){
         return FigResponseCookies::remove($response, $key);
     }
 }
