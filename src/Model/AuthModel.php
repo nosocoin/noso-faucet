@@ -50,19 +50,6 @@ class AuthModel{
 
 
 
-       /**
-     * The method that creates the cookie made a method to avoid duplicate lines
-     * (Maybe it's a bug, but sometimes cookies get lost.)
-     */
-    private function createCookie($id){
-        
-        /*   setcookie("wallet", $this->inputWallet, time() + 2629743, "/");
-           setcookie("id", md5($id), time() + 2629743, "/");
-           setcookie("refer",  null, time() - 20, "/");   */
-         
-       }
-
-
     
     /**
      * The method that determines the next steps! After receiving the wallet address.
