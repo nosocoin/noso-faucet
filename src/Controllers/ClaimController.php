@@ -40,9 +40,9 @@ final class ClaimController {
 	
 
 	public function index(Request $request, Response $response){
-	    if($this->userArray  and $this->userArray['keyClaimVer']==$request->post('TOKEN_HIDEEN'))
+	    if($this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN']){
 		return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
-		else
+			}	else
 			return $response->withStatus(302)->withHeader('Location', '/auth');
 		}	
 	}	

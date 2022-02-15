@@ -57,8 +57,7 @@ final class FaucetModel {
      * Check whether it is possible to show a claim
      */
     private function CheckAccesClaim(){
-      if(($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME'])<time())
-        return true;
+        return ($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME'])<time() ? true : false;
       
   
     }
