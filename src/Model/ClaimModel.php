@@ -26,15 +26,17 @@ final class ClaimModel {
 
 
 
+     
 
-  /**
+
+      /**
 	 * Array of settings for the view
 	 */
 	public function OptionArray(){
 		return [
 			'title' => 'Claim',
 			'PublicKey' => $this->settings['PublicKey'],
-      'ViewPayments' => false
+                  'ViewPayments' => false
 		];}
 
 

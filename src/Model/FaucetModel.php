@@ -3,6 +3,7 @@
 namespace NosoProject\Model;
 
 use NosoProject\Core\CoreFunctional;
+use NosoProject\Core\GenCode;
 
 final class FaucetModel {
     private $UserArray;
@@ -30,11 +31,12 @@ final class FaucetModel {
         'ViewClaim' => $this->CheckAccesClaim(),
         'NosoPayConfig' => $_ENV['NOSO_PAY'],
         'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
+        'TOKEN_HIDEEN' => GenCode::GenTokenClaim($this->UserArray['wallet'],$this->DB )
       ];
     }
     
 
-    
+
     /**
      * Let's count the number of referrals
      */
