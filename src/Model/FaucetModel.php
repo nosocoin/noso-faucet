@@ -34,6 +34,7 @@ final class FaucetModel {
     }
     
 
+    
     /**
      * Let's count the number of referrals
      */

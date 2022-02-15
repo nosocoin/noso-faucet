@@ -13,11 +13,20 @@ final class ClaimController {
 		$this->container = $container;
 		$this->ClaimModel = new ClaimModel($container);
 	}
+
+
+	protected function routerCheck(){
+
+	}
+
 	
 	public function checkClaim(Request $request, Response $response){
-	    if($this->container->get('UserAuthInfo'))
-		return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
-		else
+	    if($this->container->get('UserAuthInfo')){
+
+
+			
+	//	return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
+		}else
 			return $response->withStatus(302)->withHeader('Location', '/auth');
 		}	
 	
