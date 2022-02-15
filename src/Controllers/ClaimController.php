@@ -4,6 +4,8 @@ namespace NosoProject\Controllers;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use NosoProject\Model\ClaimModel;
+use NosoProject\Methods\CheckAccesClaim;
+
 
 final class ClaimController {
 	protected $container;
@@ -29,7 +31,8 @@ final class ClaimController {
 
 	
 	public function checkClaim(Request $request, Response $response){
-	    if($this->container->get('UserAuthInfo')){
+		if($this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && CheckAccesClaim::Run($this->UserArray['lastclaim'])){
+		
 
 
 
@@ -39,10 +42,12 @@ final class ClaimController {
 		}	
 	
 
+		//Здесь не работает переадресация!
+
 	public function index(Request $request, Response $response){
-	    if($this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN']){
+	    if($this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && CheckAccesClaim::Run($this->UserArray['lastclaim'])){
 		return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
-			}	else
-			return $response->withStatus(302)->withHeader('Location', '/auth');
+			}else 
+			return $response->withStatus(302)->withHeader('Location', '/'.$this->userArray ? '' : 'auth');
 		}	
 	}	

@@ -3,7 +3,8 @@
 namespace NosoProject\Model;
 
 use NosoProject\Core\CoreFunctional;
-use NosoProject\Core\GenCode;
+use NosoProject\Methods\GenCode;
+use NosoProject\Methods\CheckAccesClaim;
 
 final class FaucetModel {
     private $UserArray;
@@ -28,7 +29,7 @@ final class FaucetModel {
         'TotalPaidOut' => $this->UserArray['paidOut'],
         'RefLink' => $_SERVER['HTTP_HOST'].'/ref/'.$this->UserArray['wallet'],
         'ViewPayments' => true,
-        'ViewClaim' => $this->CheckAccesClaim(),
+        'ViewClaim' => CheckAccesClaim::Run($this->UserArray['lastclaim']),
         'NosoPayConfig' => $_ENV['NOSO_PAY'],
         'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
         'TOKEN_HIDEEN' => GenCode::GenTokenClaim($this->UserArray['wallet'],$this->DB )
@@ -53,13 +54,5 @@ final class FaucetModel {
       return $this->UserArray['balance'] + $this->UserArray['paidOut'] + $this->UserArray['refBalance'];
     }
 
-    /**
-     * Check whether it is possible to show a claim
-     */
-    private function CheckAccesClaim(){
-        return ($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME'])<time() ? true : false;
-      
-  
-    }
-
+   
 }
