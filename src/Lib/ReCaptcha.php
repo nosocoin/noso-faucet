@@ -1,4 +1,7 @@
 <?php
+
+namespace NosoProject\Lib;
+
 class ReCaptchaResponse
 {
     public $success;
