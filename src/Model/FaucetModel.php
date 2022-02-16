@@ -32,7 +32,7 @@ final class FaucetModel
       'Referrals' => $this->GetCountRefferals(),
       'FromReferals' => $this->UserArray['refBalance'],
       'TotalPaidOut' => $this->UserArray['paidOut'],
-      'RefLink' => $_SERVER['HTTP_HOST'] . '/ref/' . $this->UserArray['wallet'],
+      'RefLink' => $this->GetRefLinks(),
       'ViewPayments' => true,
       'ViewClaim' =>  $this->AccessClaim,
       'NosoPayConfig' => $_ENV['NOSO_PAY'],
@@ -68,5 +68,13 @@ final class FaucetModel
   private function GetNextClaim()
   {
     return CoreFunctional::SetTime(($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME']) - time());
+  }
+
+  /**
+   * Returns referral link
+   */
+  private function GetRefLinks()
+  {
+    return $_SERVER['HTTP_HOST'] . '/ref/' . $this->UserArray['wallet'];
   }
 }
