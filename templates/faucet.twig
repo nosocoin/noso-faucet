@@ -68,9 +68,9 @@
         </div>
       {% else %}
         <div class="notification is-warning is-light">
-          You have already claimed in the last '.$this->coreFunctional->setTime($_ENV['CLAIM_TIME']).'
+          You have already claimed in the last <strong>{{ClaimTime}}</strong>
         </br>
-        You can claim again in '.$this->coreFunctional->setTime(($this->userInfo->userLastclaim + $_ENV['CLAIM_TIME']) - time()).'
+        You can claim again in {{NextClaim}}
       </div>
     {% endif %}
   </div>

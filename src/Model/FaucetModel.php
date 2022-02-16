@@ -28,14 +28,15 @@ final class FaucetModel
       'title' => 'Home Page',
       'Wallet' => $this->UserArray['wallet'],
       'Ballance' => $this->UserArray['balance'],
-      'NosoAllTime' => $this->getCountAllPaid(),
+      'NosoAllTime' => $this->GetCountAllPaid(),
       'Referrals' => $this->GetCountRefferals(),
       'FromReferals' => $this->UserArray['refBalance'],
       'TotalPaidOut' => $this->UserArray['paidOut'],
       'RefLink' => $_SERVER['HTTP_HOST'] . '/ref/' . $this->UserArray['wallet'],
       'ViewPayments' => true,
-      'ViewClaim' => $this->AccessClaim,
+      'ViewClaim' =>  $this->AccessClaim,
       'NosoPayConfig' => $_ENV['NOSO_PAY'],
+      'NextClaim' => $this->GetNextClaim(),
       'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
       'TOKEN_HIDEEN' => $this->AccessClaim ? GenCode::GenTokenClaim($this->UserArray['wallet'], $this->DB) : ""
     ];
@@ -56,8 +57,16 @@ final class FaucetModel
   /**
    * Method that returns the number of payments for all time
    */
-  private function getCountAllPaid()
+  private function GetCountAllPaid()
   {
     return $this->UserArray['balance'] + $this->UserArray['paidOut'] + $this->UserArray['refBalance'];
+  }
+
+  /**
+   * Time left until the next claim
+   */
+  private function GetNextClaim()
+  {
+    return CoreFunctional::SetTime(($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME']) - time());
   }
 }
