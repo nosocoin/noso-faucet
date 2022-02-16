@@ -16,11 +16,7 @@ $container['view'] = function ($container) {
 	return $view;
 };
 
-$container['cookies'] = function ($container) {
-	$request = $container->get('request');
-	$request = $request->getCookieParams();
-	return $request;
-};
+
 
 
 $container['db'] = function ($container) {
