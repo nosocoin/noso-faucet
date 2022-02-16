@@ -1,14 +1,23 @@
 <?php
 
 namespace NosoProject\Model;
+use NosoProject\Methods\GenCode;
+use NosoProject\Lib\ReCaptcha;
 
 final class ClaimModel {
     private $container;
-    private $settings;
+    private $Settings;
+    private $UserArray;
+    private $DB;
+    private $RecaptchaClass;
+    private $RecaptchaResponse = null;
 
     public function __construct($container){
           $this->container = $container;
-          $this->settings = $container->get('settings')['recaptcha'];
+          $this->Settings = $container->get('settings')['recaptcha'];
+          $this->UserArray = $container->get('UserAuthInfo');
+          $this->DB = $container->get('db');
+          $this->RecaptchaClass = new ReCaptcha($this->Settings['PrivateKey']);
     }
 
 
@@ -25,19 +34,62 @@ final class ClaimModel {
      */
 
 
-
-     
-
-
       /**
 	 * Array of settings for the view
 	 */
 	public function OptionArray(){
 		return [
 			'title' => 'Claim',
-			'PublicKey' => $this->settings['PublicKey'],
+			'PublicKey' => $this->Settings['PublicKey'],
+                  'TOKEN_HIDEEN' =>  GenCode::GenTokenClaim($this->UserArray['wallet'],$this->DB ),
                   'ViewPayments' => false
 		];}
+
+            
+
+      public function Run(){
+         if($this->ChecReCaptcha)
+         $this->ClaimOkay;
+
+      }
+       
+
+      protected function ClaimOkay(){
+      //Здес мы впишем претензию  в архив
+      $Insert = DB::connectSQL()->prepare("INSERT INTO `claim` SET `wallet` = :wallet, `date` = :date, `noso` = :noso");
+      $Insert->execute(array('wallet' =>  $this->UserArray['wallet'], 'date' => time(), 'noso' => config::$NosoPay));
+       
+
+
+        //Здесь мы зачисляем полученно вознаграждения
+        $sth = DB::connectSQL()->prepare("UPDATE `users` SET `balance` = :balance, `lastclaim` = :lastclaim WHERE `id` = :id");
+        $sth->execute(array('balance' => userInfo::$user_BALANCE + config::$NosoPay,'lastclaim' => time(), 'id' => $user_id));
+        unset($sth);
+      
+        unset($Insert);
+        //Здесь мы получем процент для пользователя
+        $claimNoso = config::$NosoPay * config::$percentRef;
+        $ref = DB::connectSQL()->prepare("UPDATE `users` SET `balance` = `balance` + :balance,  `refBalance` = `refBalance` + :refBalance  WHERE `wallet` = :wallet");
+        $ref->execute(array('balance' =>  $claimNoso, 'refBalance' =>  $claimNoso,  'wallet' => userInfo::$user_REF));
+
+
+      }
+
+
+
+
+      /**
+       * Check ReCaptcha Code 
+       */
+       protected function ChecReCaptcha(){
+                  if(isset($_POST["ReCaptchaResponse"])) {
+                    $this->RecaptchaResponse = $recaptcha_class->verifyResponse(
+                          $_SERVER["REMOTE_ADDR"],
+                          $_POST["ReCaptchaResponse"]
+                      );
+                  }  
+               return $recaptcha_response != null && $recaptcha_response->success;                   
+       }
 
 
 }

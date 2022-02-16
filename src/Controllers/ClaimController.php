@@ -44,7 +44,8 @@ final class ClaimController {
 
 
 	public function index(Request $request, Response $response, $args){
-	    if($this->userArray and $this->userArray['keyClaimVer'] == $args['TOKEN_HIDEEN'] && CheckAccesClaim::Run($this->UserArray['lastclaim'])){
+	    if($this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($_POST['TOKEN_HIDEEN'] )
+		   && CheckAccesClaim::Run($this->UserArray['lastclaim'])){
 		return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
 			}else {
 			return $response->withStatus(302)->withHeader('Location',$this->userArray ? '/' : '/auth');
