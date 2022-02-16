@@ -48,33 +48,34 @@ final class ClaimModel {
             
 
       public function Run(){
-         if($this->ChecReCaptcha)
-         $this->ClaimOkay;
-
+       if($this->ChecReCaptcha())  $this->ClaimOkay();
       }
        
 
       protected function ClaimOkay(){
       //Здес мы впишем претензию  в архив
-      $Insert = DB::connectSQL()->prepare("INSERT INTO `claim` SET `wallet` = :wallet, `date` = :date, `noso` = :noso");
-      $Insert->execute(array('wallet' =>  $this->UserArray['wallet'], 'date' => time(), 'noso' => config::$NosoPay));
+      $Insert = $this->DB->prepare("INSERT INTO `claim` SET `wallet` = :wallet, `date` = :date, `noso` = :noso");
+      $Insert->execute(array('wallet' =>  $this->UserArray['wallet'], 'date' => time(), 'noso' => $_ENV['NOSO_PAY']));
+
+      //Здесь мы зачисляем полученно вознаграждения
+      $sth = $this->DB->prepare("UPDATE `users` SET `balance` = :balance, `lastclaim` = :lastclaim, `keyClaimVer` = '' WHERE `id` = :id");
+      $sth->execute(array('balance' => $this->UserArray['balance'] +  $_ENV['NOSO_PAY'],'lastclaim' => time(), 'id' =>  $this->UserArray['id']));
        
-
-
-        //Здесь мы зачисляем полученно вознаграждения
-        $sth = DB::connectSQL()->prepare("UPDATE `users` SET `balance` = :balance, `lastclaim` = :lastclaim WHERE `id` = :id");
-        $sth->execute(array('balance' => userInfo::$user_BALANCE + config::$NosoPay,'lastclaim' => time(), 'id' => $user_id));
-        unset($sth);
-      
-        unset($Insert);
-        //Здесь мы получем процент для пользователя
-        $claimNoso = config::$NosoPay * config::$percentRef;
-        $ref = DB::connectSQL()->prepare("UPDATE `users` SET `balance` = `balance` + :balance,  `refBalance` = `refBalance` + :refBalance  WHERE `wallet` = :wallet");
-        $ref->execute(array('balance' =>  $claimNoso, 'refBalance' =>  $claimNoso,  'wallet' => userInfo::$user_REF));
-
+      if($this->UserArray['ref']){
+      //Здесь мы получем процент для пользователя
+      $ref =$this->DB->prepare("UPDATE `users` SET `refBalance` = `refBalance` + :refBalance  WHERE `wallet` = :wallet");
+      $ref->execute(array('refBalance' =>  $this->ClaimNosoRefPercent(),  'wallet' => $this->UserArray['ref']));
+      }
 
       }
 
+
+      /**
+       * The percentage that the referee will receive
+       */
+      private function ClaimNosoRefPercent(){
+            return  $_ENV['NOSO_PAY'] *  $_ENV['PERCENT_REF'];
+      }
 
 
 
@@ -82,10 +83,10 @@ final class ClaimModel {
        * Check ReCaptcha Code 
        */
        protected function ChecReCaptcha(){
-                  if(isset($_POST["ReCaptchaResponse"])) {
+                  if(isset($_POST["g-recaptcha"])) {
                     $this->RecaptchaResponse = $recaptcha_class->verifyResponse(
                           $_SERVER["REMOTE_ADDR"],
-                          $_POST["ReCaptchaResponse"]
+                          $_POST["g-recaptcha"]
                       );
                   }  
                return $recaptcha_response != null && $recaptcha_response->success;                   

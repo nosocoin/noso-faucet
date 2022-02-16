@@ -16,7 +16,6 @@
 		$this->AuthModel = new AuthModel($container);
 	}
 
-
 	/**
 	 * Function for creating cookies!
 	 */
@@ -27,11 +26,13 @@
 		$response = Cookie::remove($response, 'refer');
 		return $response;
 	}
-//	N2RKVvyf254FFSR7BZgduCkNEbzizE2
 
 	public function index(Request $request, Response $response){
+		if(!$this->container->get('UserAuthInfo'))
 			return $this->container->view->render($response, 'auth.twig',
 			$this->AuthModel->OptionArray(false));
+		else
+		return $response->withStatus(302)->withHeader('Location', '/');
 	}
 		
 	public function login(Request $request, Response $response){
