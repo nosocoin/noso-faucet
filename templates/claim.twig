@@ -1,16 +1,18 @@
 {% extends 'layouts/page.twig' %}
-
 {% block content %}
-
-        <div class="box"><h5 class="title is-5">2. Solve Captcha</h5>
-        <form action="/claim/check" method="POST">
-              <input type="hidden" name="TOKEN_HIDEEN" value="{{TOKEN_HIDEEN}}">
-        <div class="g-recaptcha" data-sitekey="{{PublicKey}}"></div>
-        <div class="control field is-grouped is-grouped-right has-background-white">
-              <button type="submit" class="button is-warning">Claim</button></div>
-        </form></div>
-
-
-
-
-{% endblock %}
+      <div class="box">
+            <h5 class="title is-5">
+                  2. Solve Captcha
+            </h5>
+            <form action="/claim/check" method="POST">
+                  <input type="hidden" name="TOKEN_HIDEEN" value="{{ TOKEN_HIDEEN }}">
+                        <div class="g-recaptcha" data-sitekey="{{ PublicKey }}"></div>
+                        <div class="control field is-grouped is-grouped-right has-background-white">
+                              <button type="submit" class="button is-warning">
+                                    Claim
+                              </button>
+                        </div>
+                  </form>
+            </div>
+      {% endblock %}
+      

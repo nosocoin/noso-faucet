@@ -1,40 +1,70 @@
 {% extends 'layouts/page.twig' %}
-
 {% block content %}
-   <div class="columns"><div class="column is-half">
-   {% if ErrorInvalidWallet %}
-   <div class="notification is-danger">Need to provide a valid address!!</div>
-   {% endif %}
-      <article class="message has-background-black-ter">
-      <div class="message-header"><p>Login</p></div>
-      <div class="message-body has-background-white">
-            <form action="/auth/login" method="post">
-      <div class="control has-background-white">
-            <input class="input is-danger" type="text" name="walletAdress" placeholder="Enter Noso-coin wallet address" required>
+      <div class="columns">
+            <div class="column is-half">
+                  {% if ErrorInvalidWallet %}
+                        <div class="notification is-danger">
+                              Need to provide a valid address!!
+                        </div>
+                  {% endif %}
+                  <article class="message has-background-black-ter">
+                        <div class="message-header">
+                              <p>
+                                    Login
+                              </p>
+                        </div>
+                        <div class="message-body has-background-white">
+                              <form action="/auth/login" method="post">
+                                    <div class="control has-background-white">
+                                          <input class="input is-danger" type="text" name="walletAdress" placeholder="Enter Noso-coin wallet address" required></div>
+                                          <div class="field is-grouped is-grouped-centered">
+                                                <div class="control has-background-white">
+                                                      <button class="button is-danger">
+                                                            Login
+                                                      </button>
+                                                </div>
+                                          </div>
+                                    </form>
+                              </div>
+                        </article>
+                  </div>
+                  <div class="column">
+                        <article class="message has-background-black-ter">
+                              <div class="message-header">
+                                    <p>
+                                          What it is?
+                                    </p>
+                              </div>
+                              <div class="message-body has-background-white">
+                                    Noso is a cryptocurrency, created entirely from scratch, using the knowledge learned from more than a decade of blockchain technology.
+                                              With Noso, all users can manage their own wallet without intermediaries or heavy blockchains. 
+                              </div>
+                        </article>
+                        <div class="box">
+                              <nav class="level">
+                                    <div class="level-item has-text-centered">
+                                          <div>
+                                                <p class="heading">
+                                                      Users
+                                                </p>
+                                                <p class="title">
+                                                      {{ Count_Users }}
+                                                </p>
+                                          </div>
+                                    </div>
+                                    <div class="level-item has-text-centered">
+                                          <div>
+                                                <p class="heading">
+                                                      Paid to NOSO
+                                                </p>
+                                                <p class="title">
+                                                      {{ Count_Paid }}
+                                                </p>
+                                          </div>
+                                    </div>
+                              </div>
+                        </nav>
+                  </div>
+            </div>
       </div>
-      <div class="field is-grouped is-grouped-centered">
-            <div class="control has-background-white">
-            <button class="button is-danger">Login</button>
-            </div></div>
-      </form></div></article></div>
-
-      <div class="column">
-            <article class="message has-background-black-ter">
-      <div class="message-header"><p>What it is?</p></div>
-      <div class="message-body has-background-white">
-          Noso is a cryptocurrency, created entirely from scratch, using the knowledge learned from more than a decade of blockchain technology.
-          With Noso, all users can manage their own wallet without intermediaries or heavy blockchains. </div>
-      </article>
-
-      <div class="box"><nav class="level">
-      <div class="level-item has-text-centered"><div>
-            <p class="heading">Users</p>
-            <p class="title">{{Count_Users}}</p>
-            </div></div>
-      <div class="level-item has-text-centered"><div>
-            <p class="heading">Paid to NOSO</p>
-            <p class="title">{{Count_Paid}}</p>
-            </div></div>
-     </div>
-      </nav></div></div></div>
 {% endblock %}

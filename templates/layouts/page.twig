@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/favicon.png" type="image/x-icon"/>
-
-	{% include 'layouts/title.twig' %}
-        
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <script type="text/javascript" src="{{ asset('js/js.js') }}"></script>
-	<script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
-</head>
-<body>
-	{% if fullscreen is not defined or not fullscreen %}
-		{% include "layouts/navbar.twig" %}
-	{% endif %}
-
-    <div class="body">
-	<div class="container body_container ">
-		{% block content %}{% endblock %}
-	</div>
-    </div>
-    	{% include 'layouts/footer.twig' %}
-
-</body>
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+        {% include 'layouts/title.twig' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <script type="text/javascript" src="{{ asset('js/js.js') }}"></script>
+        <script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
+    </head>
+    <body>
+        {% if fullscreen is not defined or not fullscreen %}
+            {% include "layouts/navbar.twig" %}
+        {% endif %}
+        <div class="body">
+            <div class="container body_container ">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        {% include 'layouts/footer.twig' %}
+    </body>
 </html>
