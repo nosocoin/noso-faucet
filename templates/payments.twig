@@ -1,7 +1,77 @@
 {% extends 'layouts/page.twig' %}
 {% block content %}
-    <div class="container">
-        Hello!!
-        
-    </div>
+   
+<div class="columns"><div class="column is-two-thirds">
+<div class="notification is-warning is-light">
+Minimum payout threshold <strong>{{MinimymPayNoso}} NOSO</strong></div>
+
+
+
+
+<div class="message-header"><p>Pay</p></div><div class="box">
+<div class="control has-background-white">
+<h6 class="subtitle is-6 has-text-grey">On your balance of  <strong>{{MinimymPayNoso}} NOSO</strong> you can request a payout </br>
+Payment will be supported only by an authorized wallet! <strong>({{WalletUser}})</strong>
+
+</h6>
+
+<form action="/claim" method="post">
+  <button class="button is-danger"><strong>Request a payout</strong></button></form>
+</div></div>
+
+
+</div>
+
+
+<div class="column">
+
+
+
+<div class="message-header"><p>Last 10 claims</p></div>
+<div class="box">
+<div class="table-container">
+<table class = "table">
+<thead>
+   <tr>
+      <th>Claim time</th>
+      <th>Number of coins</th>
+   </tr>
+</thead>
+<tbody>
+ <tr>
+              <td>date</td>
+                 <td><strong>333</strong> NOSO</td></tr>
+</tbody>
+</table></div></div>
+<div class="message-header"><p>Latest payments</p></div>
+<div class="box">
+<div class="table-container">
+<table class = "table">
+<thead>
+   <tr>
+      <th>Status</th>
+      <th>Number of coins</th>
+      <th>Time</th>
+   </tr>
+</thead>
+<tbody>
+   <tr>
+      <td>Inquiry</td>
+      <td>50 NOSO</td>
+      <td>12.01.22 18:34</td>
+   </tr>
+   <tr>
+      <td>Paid out</td>
+      <td>50 NOSO</td>
+      <td>12.01.22 18:34</td>
+   </tr>
+   <tr>
+      <td>Paid out</td>
+      <td>50 NOSO</td>
+      <td>12.01.22 18:34</td>
+   </tr>
+</tbody>
+</table></div></div></div></div></div>
+
+
 {% endblock %}
