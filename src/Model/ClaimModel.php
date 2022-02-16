@@ -10,7 +10,7 @@ final class ClaimModel {
     private $UserArray;
     private $DB;
     private $RecaptchaClass;
-    private $RecaptchaResponse = null;
+ 
 
     public function __construct($container){
           $this->container = $container;
@@ -83,13 +83,14 @@ final class ClaimModel {
        * Check ReCaptcha Code 
        */
        protected function ChecReCaptcha(){
-                  if(isset($_POST["g-recaptcha"])) {
-                    $this->RecaptchaResponse = $recaptcha_class->verifyResponse(
+            $RecaptchaResponse = null;
+                  if(isset($_POST["g-recaptcha-response"])) {
+                    $RecaptchaResponse = $this->RecaptchaClass->verifyResponse(
                           $_SERVER["REMOTE_ADDR"],
-                          $_POST["g-recaptcha"]
+                          $_POST["g-recaptcha-response"]
                       );
                   }  
-               return $recaptcha_response != null && $recaptcha_response->success;                   
+               return  $RecaptchaResponse != null && $RecaptchaResponse->success;                   
        }
 
 
