@@ -40,11 +40,11 @@
         <div class="box">
           <div class="control has-background-white">
             <strong>
-              <h6 class="title is-5">
+              <h5 class="title is-5">
                 1. Claim
-              </h6>
+              </h5>
             </string>
-            <h6 class="subtitle is-6 has-text-grey">
+            <h5 class="subtitle is-5 has-text-grey">
               By filing a claim you can get 
               <strong class="has-text-warning-dark">
                 {{ NosoPayConfig }}
@@ -55,7 +55,7 @@
             <strong>
               {{ ClaimTime }}
             </strong>
-          </h6>
+          </h5>
           <form action="/claim" method="post">
             <input type="hidden" name="TOKEN_HIDEEN" value="{{ TOKEN_HIDEEN }}">
               <button class="button is-danger">
