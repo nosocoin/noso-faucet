@@ -12,20 +12,20 @@ final class ClaimController
 {
 	protected $container;
 	protected $ClaimModel;
-	protected $userArray;
+	protected $UserArray;
 
 	public function __construct($container)
 	{
 		$this->container = $container;
 		$this->ClaimModel = new ClaimModel($container);
-		$this->userArray = $this->container->get('UserAuthInfo');
+		$this->UserArray = $this->container->get('UserAuthInfo');
 	}
 
 
 	public function checkClaim(Request $request, Response $response)
 	{
 		if (
-			$this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($_POST['TOKEN_HIDEEN'])
+			$this->UserArray and $this->UserArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
 			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
 		) {
 			$this->ClaimModel->Run();
@@ -38,12 +38,12 @@ final class ClaimController
 	public function index(Request $request, Response $response, $args)
 	{
 		if (
-			$this->userArray and $this->userArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($_POST['TOKEN_HIDEEN'])
+			$this->UserArray and $this->UserArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
 			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
 		) {
 			return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
 		} else {
-			return $response->withStatus(302)->withHeader('Location', $this->userArray ? '/' : '/auth');
+			return $response->withStatus(302)->withHeader('Location', $this->UserArray ? '/' : '/auth');
 		}
 	}
 }
