@@ -9,11 +9,3 @@ el.classList.toggle('is-active'); $target.classList.toggle('is-active');
 }); }); } });
 
 
-function copy() {
-    
-    let refLinks = document.getElementById("refLinks");
-    refLinks.execCommand('copy');
-
-  }
-
-
