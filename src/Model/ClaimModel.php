@@ -32,7 +32,7 @@ final class ClaimModel
                   'title' => 'Claim',
                   'PublicKey' => $this->Settings['PublicKey'],
                   'TOKEN_HIDEEN' =>  GenCode::GenTokenClaim($this->UserArray['wallet'], $this->DB),
-                  'ViewPayments' => false
+                  'ViewPayments' => true
             ];
       }
 
