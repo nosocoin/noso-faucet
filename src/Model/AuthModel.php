@@ -14,9 +14,10 @@ class AuthModel
 
     public function __construct($container)
     {
-        $this->inputWallet = !empty($this->container->get('POST')['TOKEN_HIDEEN']) ?  htmlspecialchars($this->container->get('POST')['TOKEN_HIDEEN'], ENT_QUOTES) : '';
-        $this->DB = $container->get('db');
         $this->container = $container;
+        $this->inputWallet = !empty($container->get('POST')['walletAdress']) ?  htmlspecialchars( $container->get('POST')['walletAdress'], ENT_QUOTES) : '';
+        $this->DB = $container->get('db');
+     
     }
 
     /**
