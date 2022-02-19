@@ -17,7 +17,9 @@ $container['view'] = function ($container) {
 };
 
 
-
+$container['POST'] = function ($container) {
+	return $container->request->getParsedBody();
+};
 
 $container['db'] = function ($container) {
 	$settings = $container->get('settings')['db'];

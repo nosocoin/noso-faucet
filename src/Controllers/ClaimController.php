@@ -25,7 +25,7 @@ final class ClaimController
 	public function checkClaim(Request $request, Response $response)
 	{
 		if (
-			$this->UserArray and $this->UserArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
+			$this->UserArray and $this->UserArray['keyClaimVer'] == $this->container->get('POST')['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
 			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
 		) {
 			$this->ClaimModel->Run();
@@ -38,7 +38,7 @@ final class ClaimController
 	public function index(Request $request, Response $response, $args)
 	{
 		if (
-			$this->UserArray and $this->UserArray['keyClaimVer'] == $_POST['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
+			$this->UserArray and $this->UserArray['keyClaimVer'] == $this->container->get('POST')['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
 			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
 		) {
 			return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());

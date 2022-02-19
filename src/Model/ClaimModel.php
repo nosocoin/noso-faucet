@@ -74,17 +74,16 @@ final class ClaimModel
       }
 
 
-
       /**
        * Check ReCaptcha Code 
        */
       protected function ChecReCaptcha()
       {
             $RecaptchaResponse = null;
-            if (isset($_POST["g-recaptcha-response"])) {
+            if (isset($this->container->get('POST')["g-recaptcha-response"])) {
                   $RecaptchaResponse = $this->RecaptchaClass->verifyResponse(
                         $_SERVER["REMOTE_ADDR"],
-                        $_POST["g-recaptcha-response"]
+                        $this->container->get('POST')["g-recaptcha-response"]
                   );
             }
             return  $RecaptchaResponse != null && $RecaptchaResponse->success;
