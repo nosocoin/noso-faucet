@@ -19,4 +19,13 @@ $app->get('/faq', function ($request, $response, $args) {
         'NosoPay' => $_ENV['NOSO_PAY'],
         'ViewPayments' => false
     ]);
+
+}); 
+$app->get('/adminPage', function ($request, $response, $args) {
+    return $this->view->render($response, 'adminPage.twig', [
+        'title' => 'Admin Page',
+        'ViewPayments' => true,
+        'ViewInclud' => 'FaucetSettings'
+    ]);
+
 });
