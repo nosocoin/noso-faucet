@@ -10,10 +10,9 @@ el.classList.toggle('is-active'); $target.classList.toggle('is-active');
 
 
 function copy() {
-    var copyText = document.getElementById("refLinks");
-    copyText.select();
-    document.execCommand("copy");
-  
+    
+    let refLinks = document.getElementById("refLinks");
+    refLinks.execCommand('copy');
 
   }
 
