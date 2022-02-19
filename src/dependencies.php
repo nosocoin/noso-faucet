@@ -51,6 +51,16 @@ $container['UserAuthInfo'] = function ($container) {
 	}
 };
 
+
+
+
+$container['notFoundHandler'] = function ($container) {
+	return function ($request, $response) use ($container) {
+		return $container->view->render($response, '404.twig');
+	};
+};
+
+
 function asset($path)
 {
 	if ($path[0] != '/') {
