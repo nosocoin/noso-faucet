@@ -41,10 +41,12 @@
             </div>
         </div>
     </div>
+
+
     <div class="column">
         <div class="message-header">
             <p>
-                Last 10 claims
+                Latest Claims
             </p>
         </div>
         <div class="box">
@@ -61,17 +63,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                       
+                            {% for claims in ArrayClaims %}
+                            <tr>
                             <td>
-                                date
+                                {{ claims.date|date("m/d/Y  H:i") }}
                             </td>
                             <td>
                                 <strong>
-                                    333
+                                    {{ claims.noso }}
                                 </strong>
                                 NOSO
                             </td>
                         </tr>
+                    {% endfor %}
+                           
+                       
                     </tbody>
                 </table>
             </div>
@@ -98,39 +105,25 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        {% for pay in ArrayPayments %}
+                        
                         <tr>
                             <td>
-                                Inquiry
+                                {{ pay.status }}
                             </td>
                             <td>
-                                50 NOSO
+                                {{ pay.balance }} NOSO
                             </td>
                             <td>
-                                12.01.22 18:34
+                                {{ pay.date|date("m/d/Y  H:i") }}
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                Paid out
-                            </td>
-                            <td>
-                                50 NOSO
-                            </td>
-                            <td>
-                                12.01.22 18:34
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Paid out
-                            </td>
-                            <td>
-                                50 NOSO
-                            </td>
-                            <td>
-                                12.01.22 18:34
-                            </td>
-                        </tr>
+
+                      
+                {% endfor %}
+
+                    
                     </tbody>
                 </table>
             </div>
