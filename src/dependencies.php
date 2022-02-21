@@ -4,6 +4,23 @@ use NosoProject\Core\Cookie;
 
 $container = $app->getContainer();
 
+/**
+ * Error processing
+ */
+
+$container['notAllowedHandler'] = function ($container) {
+	return function ($request, $response) use ($container) {
+		return $container->view->render($response, '404.twig');
+	};
+};
+
+$container['notFoundHandler'] = function ($container) {
+	return function ($request, $response) use ($container) {
+		return $container->view->render($response, '404.twig');
+	};
+};
+
+
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../templates', [
 		'cache' => false,
@@ -36,6 +53,9 @@ $container['db'] = function ($container) {
 	}
 };
 
+/**
+ * Request an array of user data if he is authorized
+ */
 $container['UserAuthInfo'] = function ($container) {
 
 	$cookieWallet = Cookie::get($container->get('request'), 'wallet', '');
@@ -43,22 +63,12 @@ $container['UserAuthInfo'] = function ($container) {
 
 	$UserInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
 	$UserInforSQL->execute(array('wallet' => $cookieWallet));
-	if ($array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId) {
-		return $array;
-	} else {
-		unset($UserInforSQL);
-		return false;
-	}
+
+	return $array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId ? $array : false;
 };
 
 
 
-
-$container['notFoundHandler'] = function ($container) {
-	return function ($request, $response) use ($container) {
-		return $container->view->render($response, '404.twig');
-	};
-};
 
 
 function asset($path)
@@ -66,7 +76,7 @@ function asset($path)
 	if ($path[0] != '/') {
 		$path = "/{$path}";
 	}
-	return "{$_ENV['APP_URL']}{$path}";
+	return "{$path}";
 }
 $asset = new Twig\TwigFunction('asset', function ($path) {
 	return asset($path);
