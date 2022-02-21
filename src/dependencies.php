@@ -67,6 +67,15 @@ $container['UserAuthInfo'] = function ($container) {
 	return $array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId ? $array : false;
 };
 
+/**
+ * Request settings faucet from the database
+ */
+$container['FaucetSettings'] = function ($container) {
+	$Set = $container->get('db')->prepare("SELECT * FROM `settings`");
+	$Set->execute();
+
+	return $array = $Set->fetch(\PDO::FETCH_ASSOC) ? $array : false;
+};
 
 
 
