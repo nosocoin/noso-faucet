@@ -5,6 +5,7 @@ use Dotenv\Dotenv;
 //Start ENV
 $dotenv = Dotenv::createImmutable(dirname(__DIR__) . '/config');
 $dotenv->load();
+$dotenv -> safeLoad ();
 
 //Check empty env
 $dotenv->required(['FAUCET_DATABASE_HOST', 'FAUCET_DATABASE', 'FAUCET_DATABASE_USER'])->notEmpty();
@@ -18,10 +19,6 @@ return [
             'Database' => $_ENV['FAUCET_DATABASE'],
             'Username' => $_ENV['FAUCET_DATABASE_USER'],
             'Password' => $_ENV['FAUCET_DATABASE_PASSWORD']
-        ],
-        'recaptcha' => [
-            'PublicKey' => $_ENV['PUBLIC_KEY_RE'],
-            'PrivateKey' => $_ENV['PRIVATE_KEY_RE']
         ]
     ]
 

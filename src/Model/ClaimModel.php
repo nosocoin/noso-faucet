@@ -17,10 +17,10 @@ final class ClaimModel
       public function __construct($container)
       {
             $this->container = $container;
-            $this->Settings = $container->get('settings')['recaptcha'];
+            $this->Settings = $container->get('FaucetSettings');
             $this->UserArray = $container->get('UserAuthInfo');
             $this->DB = $container->get('db');
-            $this->RecaptchaClass = new ReCaptcha($this->Settings['PrivateKey']);
+            $this->RecaptchaClass = new ReCaptcha($this->Settings['PRIVATE_KEY_RE']);
       }
 
       /**
@@ -30,7 +30,7 @@ final class ClaimModel
       {
             return [
                   'title' => 'Claim',
-                  'PublicKey' => $this->Settings['PublicKey'],
+                  'PublicKey' => $this->Settings['PUBLIC_KEY_RE'],
                   'TOKEN_HIDEEN' =>  GenCode::GenTokenClaim($this->UserArray['wallet'], $this->DB),
                   'ViewPayments' => true
             ];
@@ -51,11 +51,11 @@ final class ClaimModel
       {
             //Здес мы впишем претензию  в архив
             $Insert = $this->DB->prepare("INSERT INTO `claim` SET `wallet` = :wallet, `date` = :date, `noso` = :noso");
-            $Insert->execute(array('wallet' =>  $this->UserArray['wallet'], 'date' => time(), 'noso' => $_ENV['NOSO_PAY']));
+            $Insert->execute(array('wallet' =>  $this->UserArray['wallet'], 'date' => time(), 'noso' => $this->Settings['NOSO_PAY']));
 
             //Здесь мы зачисляем полученно вознаграждения
             $sth = $this->DB->prepare("UPDATE `users` SET `balance` = :balance, `lastclaim` = :lastclaim, `keyClaimVer` = '' WHERE `id` = :id");
-            $sth->execute(array('balance' => $this->UserArray['balance'] +  $_ENV['NOSO_PAY'], 'lastclaim' => time(), 'id' =>  $this->UserArray['id']));
+            $sth->execute(array('balance' => $this->UserArray['balance'] + $this->Settings['NOSO_PAY'], 'lastclaim' => time(), 'id' =>  $this->UserArray['id']));
 
             if ($this->UserArray['ref']) {
                   //Здесь мы получем процент для пользователя
@@ -70,7 +70,7 @@ final class ClaimModel
        */
       private function ClaimNosoRefPercent()
       {
-            return  $_ENV['NOSO_PAY'] *  $_ENV['PERCENT_REF'];
+            return   $this->Settings['NOSO_PAY'] * $this->Settings['PERCENT_REF'];
       }
 
 

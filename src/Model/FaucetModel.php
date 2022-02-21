@@ -11,14 +11,16 @@ final class FaucetModel
   private $UserArray;
   private $DB;
   private $AccessClaim;
+  private $FaucetSettings;
 
 
 
   public function __construct($container)
   {
+    $this->FaucetSettings = $container->get('FaucetSettings');
     $this->UserArray = $container->get('UserAuthInfo');
     $this->DB = $container->get('db');
-    $this->AccessClaim = CheckAccesClaim::Run($this->UserArray['lastclaim']);
+    $this->AccessClaim = CheckAccesClaim::Run($this->UserArray['lastclaim'],$container->get('FaucetSettings'));
   }
 
 
@@ -35,9 +37,9 @@ final class FaucetModel
       'RefLink' => $this->GetRefLinks(),
       'ViewPayments' => true,
       'ViewClaim' =>  $this->AccessClaim,
-      'NosoPayConfig' => $_ENV['NOSO_PAY'],
+      'NosoPayConfig' =>  $this->FaucetSettings['NOSO_PAY'],
       'NextClaim' => $this->GetNextClaim(),
-      'ClaimTime' => CoreFunctional::SetTime($_ENV['CLAIM_TIME']),
+      'ClaimTime' => CoreFunctional::SetTime($this->FaucetSettings['CLAIM_TIME']),
       'TOKEN_HIDEEN' => $this->AccessClaim ? GenCode::GenTokenClaim($this->UserArray['wallet'], $this->DB) : ""
     ];
   }
@@ -67,7 +69,7 @@ final class FaucetModel
    */
   private function GetNextClaim()
   {
-    return CoreFunctional::SetTime(($this->UserArray['lastclaim'] + $_ENV['CLAIM_TIME']) - time());
+    return CoreFunctional::SetTime(($this->UserArray['lastclaim'] + $this->FaucetSettings['CLAIM_TIME']) - time());
   }
 
   /**

@@ -6,9 +6,11 @@ final class PaymentsModel
 {
   private $UserArray;
   private $DB;
+  private $Settings;
 
   public function __construct($container)
   {
+    $this->Settings = $container->get('FaucetSettings');
     $this->UserArray = $container->get('UserAuthInfo');
     $this->DB = $container->get('db');
   }
@@ -19,7 +21,7 @@ final class PaymentsModel
     return [
       'title' => 'Payments',
       'ViewPayments' => false,
-      'MinimymPayNoso' => $_ENV['MIN_NOSO_PAYMENTS'],
+      'MinimymPayNoso' => $this->Settings['MIN_NOSO_PAYMENTS'],
       'WalletUser' => $this->UserArray['wallet'],
       'ArrayClaims' => $this->GetArrayClaims(),
       'ArrayPayments' => $this->GetArrayPayments()

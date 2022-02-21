@@ -16,7 +16,7 @@ $app->get('/payments', 'PaymentsController:index');
 $app->get('/faq', function ($request, $response, $args) {
     return $this->view->render($response, 'faq.twig', [
         'title' => 'FAQ',
-        'NosoPay' => $_ENV['NOSO_PAY'],
+        'NosoPay' => $this->get('FaucetSettings')['NOSO_PAY'],
         'ViewPayments' => false
     ]);
 

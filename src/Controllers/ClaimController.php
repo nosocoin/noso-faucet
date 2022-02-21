@@ -26,7 +26,7 @@ final class ClaimController
 	{
 		if (
 			$this->UserArray and $this->UserArray['keyClaimVer'] == $this->container->get('POST')['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
-			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
+			&& CheckAccesClaim::Run($this->UserArray['lastclaim'],$this->container->get('FaucetSettings'))
 		) {
 			$this->ClaimModel->Run();
 			return $response->withStatus(302)->withHeader('Location', '/');
@@ -39,7 +39,7 @@ final class ClaimController
 	{
 		if (
 			$this->UserArray and $this->UserArray['keyClaimVer'] == $this->container->get('POST')['TOKEN_HIDEEN'] && !empty($this->UserArray['keyClaimVer'] )
-			&& CheckAccesClaim::Run($this->UserArray['lastclaim'])
+			&& CheckAccesClaim::Run($this->UserArray['lastclaim'],$this->container->get('FaucetSettings'))
 		) {
 			return $this->container->view->render($response, 'claim.twig', $this->ClaimModel->OptionArray());
 		} else {
