@@ -7,7 +7,7 @@ $dotenv = Dotenv::createImmutable(dirname(__DIR__) . '/config');
 $dotenv->load();
 
 //Check empty env
-$dotenv->required(['NOSO_PAY', 'CLAIM_TIME', 'MIN_NOSO_PAYMENTS', 'PERCENT_REF'])->notEmpty();
+$dotenv->required(['FAUCET_DATABASE_HOST', 'FAUCET_DATABASE', 'FAUCET_DATABASE_USER'])->notEmpty();
 
 return [
     'settings' => [
