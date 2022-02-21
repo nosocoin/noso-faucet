@@ -64,7 +64,12 @@ $container['UserAuthInfo'] = function ($container) {
 	$UserInforSQL = $container->get('db')->prepare("SELECT * FROM `users` WHERE `wallet` = :wallet");
 	$UserInforSQL->execute(array('wallet' => $cookieWallet));
 
-	return $array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId ? $array : false;
+	if ($array = $UserInforSQL->fetch(\PDO::FETCH_ASSOC) and md5($array['id']) == $cookieId) {
+		return $array;
+	} else {
+		unset($UserInforSQL);
+		return false;
+	}
 };
 
 /**
@@ -74,7 +79,7 @@ $container['FaucetSettings'] = function ($container) {
 	$Set = $container->get('db')->prepare("SELECT * FROM `settings`");
 	$Set->execute();
 
-	return $array = $Set->fetch(\PDO::FETCH_ASSOC) ? $array : false;
+	return $Set->fetch(\PDO::FETCH_ASSOC);
 };
 
 
