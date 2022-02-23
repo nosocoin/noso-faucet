@@ -121,3 +121,7 @@ $container['RefLinkController'] = function () {
 $container['ClaimController'] = function ($container) {
 	return new \NosoProject\Controllers\ClaimController($container);
 };
+
+$container['TestController'] = function ($container) {
+	return new \NosoProject\Controllers\TestController($container);
+};

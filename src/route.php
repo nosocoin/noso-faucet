@@ -24,7 +24,7 @@ $app->get('/faq', function ($request, $response, $args) {
 
 
 
-
+$app->get('/test', 'TestController:index');
 
 
 $app->get('/adminPage/FaucetSettings', function ($request, $response, $args) {
