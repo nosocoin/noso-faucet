@@ -21,7 +21,13 @@ $app->get('/faq', function ($request, $response, $args) {
     ]);
 
 }); 
-$app->get('/adminPage', function ($request, $response, $args) {
+
+
+
+
+
+
+$app->get('/adminPage/FaucetSettings', function ($request, $response, $args) {
     return $this->view->render($response, 'adminPage.twig', [
         'title' => 'Admin Page',
         'ViewPayments' => true,

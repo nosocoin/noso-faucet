@@ -1,10 +1,13 @@
 {% extends 'layouts/page.twig' %}
 {% block content %}
 
-
 <div class="columns">
-		<div class="column is-two-thirds">
-        {% include 'adminPage/FaucetSettings.twig' %}
+		<div class="column is-two-thirds">\
+    {% if ViewInclud == "FaucetSettings"  %}
+         {% include 'adminPage/FaucetSettings.twig' %}
+    
+    {% endif %}
+    
       </div></div>
 
 
@@ -28,27 +31,25 @@
   </div>
  
  
-  <a class="panel-block">
+  <a class="control has-background-white panel-block">
     <span class="panel-icon">
     </span>
     Faucet settings
   </a>
-  <a class="panel-block">
+
+  <a class="control has-background-white panel-block">
     <span class="panel-icon">
     </span>
-    Payment settings
+    Faucet settings
   </a>
-  <a class="panel-block">
-  <span class="panel-icon">
-  </span>
-  Payment settings
-</a>
+  <a class="control has-background-white panel-block">
+    <span class="panel-icon">
+    </span>
+    Faucet settings
+  </a>
 
   
 </nav>
-
-
-
 
 </div></div>
 {% endblock %}
